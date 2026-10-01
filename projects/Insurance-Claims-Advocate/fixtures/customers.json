@@ -1,0 +1,27 @@
+{
+  "fixture": true,
+  "customers": [
+    {
+      "id": "cus_demo_3",
+      "tenant_id": "tenant_demo",
+      "full_name": "Jordan Rivera",
+      "email_masked": "j***@example.test",
+      "home_city": "Austin, TX",
+      "payout_destination": {"type": "ach", "bank_name": "Demo Bank (fixture)", "account_last4": "4321", "routing_last4": "0021", "verified": true}
+    },
+    {
+      "id": "cus_demo_4",
+      "tenant_id": "tenant_demo",
+      "full_name": "Priya Natarajan",
+      "email_masked": "p***@example.test",
+      "home_city": "Seattle, WA",
+      "payout_destination": {"type": "ach", "bank_name": "Demo Bank (fixture)", "account_last4": "8899", "routing_last4": "0021", "verified": true}
+    }
+  ],
+  "principals": [
+    {"id": "prn_customer_demo_3", "token": "tok_customer_demo_3", "role": "customer", "customer_id": "cus_demo_3", "display_name": "Jordan Rivera"},
+    {"id": "prn_customer_demo_4", "token": "tok_customer_demo_4", "role": "customer", "customer_id": "cus_demo_4", "display_name": "Priya Natarajan"},
+    {"id": "prn_rep_demo_3", "token": "tok_rep_demo_3", "role": "representative", "customer_id": "cus_demo_3", "display_name": "Authorized representative for Jordan Rivera"},
+    {"id": "prn_operator_demo", "token": "tok_operator_demo", "role": "operator", "customer_id": null, "display_name": "Operations reviewer"}
+  ]
+}

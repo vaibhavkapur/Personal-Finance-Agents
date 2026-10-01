@@ -1,0 +1,1109 @@
+{
+  "fixture_version": "2026.09.1",
+  "note": "Labeled evaluation cases. Expectations describe state and evidence, not wording. held_out cases are excluded from tuning.",
+  "cases": [
+    {
+      "id": "eval_001",
+      "title": "Demo 1: comparable shopping, select A",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "after_quotes_status": "awaiting_selection",
+        "final_state": "completed",
+        "verified": true,
+        "policy_premium_minor": 18000,
+        "revised_offer": false,
+        "prepare_error": null
+      }
+    },
+    {
+      "id": "eval_002",
+      "title": "Select B (broader terms, lower deductible)",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "final_state": "completed",
+        "verified": true,
+        "policy_premium_minor": 21000
+      }
+    },
+    {
+      "id": "eval_003",
+      "title": "Lower-deductible preference ranks B first",
+      "category": "ordinary_completion",
+      "held_out": true,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry"
+        ],
+        "deductible_preference": "lower_deductible"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_harborline_b",
+          "ins_northwind_a"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "final_state": "completed",
+        "verified": true
+      }
+    },
+    {
+      "id": "eval_004",
+      "title": "No jewelry requirement: C is suitable and cheapest",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "bicycles",
+          "electronics"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_cedar_c",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_cedar_c",
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [],
+        "final_state": "completed",
+        "verified": true,
+        "policy_premium_minor": 16500
+      }
+    },
+    {
+      "id": "eval_005",
+      "title": "Higher property limit reprices every insurer",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {
+        "property_limit_minor": 4500000
+      },
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "final_state": "completed",
+        "policy_premium_minor": 22500
+      }
+    },
+    {
+      "id": "eval_006",
+      "title": "Liability 300k option",
+      "category": "ordinary_completion",
+      "held_out": true,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {
+        "liability_limit_minor": 30000000
+      },
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "final_state": "completed",
+        "policy_premium_minor": 24000
+      }
+    },
+    {
+      "id": "eval_007",
+      "title": "Household with prior claim selects B (no surcharge at B)",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "customer_id": "cus_demo_2",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "final_state": "completed",
+        "revised_offer": false,
+        "policy_premium_minor": 21000
+      }
+    },
+    {
+      "id": "eval_008",
+      "title": "Home-business household selects B (B covers business property)",
+      "category": "ordinary_completion",
+      "held_out": true,
+      "customer_id": "cus_demo_3",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "home_business_property"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c",
+          "ins_northwind_a"
+        ],
+        "final_state": "completed",
+        "verified": true
+      }
+    },
+    {
+      "id": "eval_009",
+      "title": "Deductible cap unknown: nothing can be shortlisted",
+      "category": "missing_information",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "required_item_classes": [
+          "jewelry"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [],
+        "undetermined": [
+          "ins_harborline_b",
+          "ins_northwind_a"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "prepare_error": "not suitable",
+        "final_state": "awaiting_selection"
+      }
+    },
+    {
+      "id": "eval_010",
+      "title": "Replacement-cost preference unknown",
+      "category": "missing_information",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {
+        "replacement_cost_required": null
+      },
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": null,
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "quote_request_error": "needs are incomplete",
+        "final_state": "collecting"
+      }
+    },
+    {
+      "id": "eval_011",
+      "title": "Unknown answer to C's follow-up keeps C missing",
+      "category": "missing_information",
+      "held_out": true,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {
+        "cp_q_high_value": "unknown"
+      },
+      "faults": [],
+      "select_insurer": null,
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "missing_responses": [
+          "ins_cedar_c"
+        ],
+        "final_state": "awaiting_selection"
+      }
+    },
+    {
+      "id": "eval_012",
+      "title": "No address: quotes cannot be requested",
+      "category": "missing_information",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "address": false,
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry"
+        ]
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": null,
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "quote_request_error": "needs are incomplete",
+        "final_state": "collecting"
+      }
+    },
+    {
+      "id": "eval_013",
+      "title": "Unknown dog answer blocks A's application (never defaults to no)",
+      "category": "missing_information",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {
+        "nw_q_dog": "unknown"
+      },
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "prepare_error": "incomplete",
+        "final_state": "awaiting_selection",
+        "executed_actions": 0
+      }
+    },
+    {
+      "id": "eval_014",
+      "title": "Required item classes unknown",
+      "category": "missing_information",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": null,
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [],
+        "undetermined": [
+          "ins_cedar_c",
+          "ins_harborline_b",
+          "ins_northwind_a"
+        ],
+        "final_state": "awaiting_selection"
+      }
+    },
+    {
+      "id": "eval_015",
+      "title": "Deductible cap $500 excludes A and C on deductible",
+      "category": "missing_information",
+      "held_out": true,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 50000,
+        "required_item_classes": [
+          "jewelry"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c",
+          "ins_northwind_a"
+        ],
+        "final_state": "completed"
+      }
+    },
+    {
+      "id": "eval_016",
+      "title": "Dog vs animals contradiction is detected, not resolved by copying",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {
+        "nw_q_dog": true,
+        "hl_q_animals": false
+      },
+      "faults": [],
+      "select_insurer": null,
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "contradictions": 1,
+        "final_state": "awaiting_selection"
+      }
+    },
+    {
+      "id": "eval_017",
+      "title": "Claims contradiction across insurers",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {
+        "nw_q_claims": true,
+        "cp_q_claims": false
+      },
+      "faults": [],
+      "select_insurer": null,
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "contradictions": 1
+      }
+    },
+    {
+      "id": "eval_018",
+      "title": "Demo 3: underwriting revises premium; customer accepts new terms",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "customer_id": "cus_demo_2",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "revised_offer": true,
+        "revised_premium_minor": 21600,
+        "final_state": "completed",
+        "policy_premium_minor": 21600,
+        "verified": true
+      }
+    },
+    {
+      "id": "eval_019",
+      "title": "Revised offer rejected returns to selection without binding",
+      "category": "conflicting_evidence",
+      "held_out": true,
+      "customer_id": "cus_demo_2",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": false,
+      "underwriting_hours": 5,
+      "expected": {
+        "revised_offer": true,
+        "final_state": "awaiting_selection",
+        "verified": false,
+        "policy_premium_minor": null
+      }
+    },
+    {
+      "id": "eval_020",
+      "title": "Refuse to apply for excluded cheapest quote",
+      "category": "refusal",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_cedar_c",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "prepare_error": "not suitable",
+        "final_state": "awaiting_selection",
+        "executed_actions": 0
+      }
+    },
+    {
+      "id": "eval_021",
+      "title": "Approval with tampered payload hash is rejected",
+      "category": "refusal",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": "approve_wrong_hash",
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "approval_error": "payload has changed",
+        "final_state": "awaiting_approval",
+        "executed_actions": 0
+      }
+    },
+    {
+      "id": "eval_022",
+      "title": "Approval with stale case version is rejected",
+      "category": "refusal",
+      "held_out": true,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": "approve_stale_version",
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "approval_error": "stale",
+        "final_state": "awaiting_approval",
+        "executed_actions": 0
+      }
+    },
+    {
+      "id": "eval_023",
+      "title": "Property limit above program maxima: A and C decline to quote",
+      "category": "refusal",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {
+        "property_limit_minor": 8000000
+      },
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_harborline_b"
+        ],
+        "missing_responses": [
+          "ins_cedar_c",
+          "ins_northwind_a"
+        ],
+        "final_state": "completed"
+      }
+    },
+    {
+      "id": "eval_024",
+      "title": "Home business: A declines in underwriting",
+      "category": "refusal",
+      "held_out": false,
+      "customer_id": "cus_demo_3",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "final_state": "declined",
+        "verified": false
+      }
+    },
+    {
+      "id": "eval_025",
+      "title": "Unsupported state is refused at intake",
+      "category": "refusal",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {
+        "state_code": "NY"
+      },
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": null,
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "create_error": "only state CA",
+        "final_state": null
+      }
+    },
+    {
+      "id": "eval_026",
+      "title": "B times out before quoting; comparison discloses it, poller recovers",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [
+        {
+          "insurer_id": "ins_harborline_b",
+          "kind": "timeout_before",
+          "operation": "request_quote"
+        }
+      ],
+      "select_insurer": null,
+      "scenario": "compare_before_retry",
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "early_missing_responses": [
+          "ins_cedar_c",
+          "ins_harborline_b"
+        ],
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "missing_responses": []
+      }
+    },
+    {
+      "id": "eval_027",
+      "title": "A accepts the application but the response is lost; reconciled by request ref",
+      "category": "uncertain_provider",
+      "held_out": true,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [
+        {
+          "insurer_id": "ins_northwind_a",
+          "kind": "timeout",
+          "operation": "submit_application"
+        }
+      ],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "final_state": "completed",
+        "verified": true,
+        "submit_calls": 1,
+        "executed_actions": 1
+      }
+    },
+    {
+      "id": "eval_028",
+      "title": "A returns a malformed quote; retried and recovered",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [
+        {
+          "insurer_id": "ins_northwind_a",
+          "kind": "malformed",
+          "operation": "request_quote"
+        }
+      ],
+      "select_insurer": null,
+      "scenario": "recover_timeouts",
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0
+      }
+    },
+    {
+      "id": "eval_029",
+      "title": "Issued policy has a shifted effective date: verification fails",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [
+        {
+          "insurer_id": "ins_northwind_a",
+          "kind": "effective_date_shift_days",
+          "operation": "submit_application",
+          "params": {
+            "days": 7
+          }
+        }
+      ],
+      "select_insurer": "ins_northwind_a",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "final_state": "manual_review",
+        "verified": false
+      }
+    },
+    {
+      "id": "eval_030",
+      "title": "C times out on the follow-up answer; poller resumes the task",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [
+        {
+          "insurer_id": "ins_cedar_c",
+          "kind": "timeout",
+          "operation": "answer_question"
+        }
+      ],
+      "select_insurer": null,
+      "scenario": "recover_timeouts",
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0,
+        "final_state": "awaiting_selection"
+      }
+    },
+    {
+      "id": "eval_031",
+      "title": "B declines at underwriting (injected)",
+      "category": "uncertain_provider",
+      "held_out": true,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [
+        {
+          "insurer_id": "ins_harborline_b",
+          "kind": "decline_next_application",
+          "operation": "submit_application"
+        }
+      ],
+      "select_insurer": "ins_harborline_b",
+      "scenario": null,
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "final_state": "declined",
+        "verified": false
+      }
+    },
+    {
+      "id": "eval_032",
+      "title": "All insurers time out, then recover on retry",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [
+        {
+          "insurer_id": "ins_northwind_a",
+          "kind": "timeout_before",
+          "operation": "request_quote"
+        },
+        {
+          "insurer_id": "ins_harborline_b",
+          "kind": "timeout_before",
+          "operation": "request_quote"
+        },
+        {
+          "insurer_id": "ins_cedar_c",
+          "kind": "timeout_before",
+          "operation": "request_quote"
+        }
+      ],
+      "select_insurer": null,
+      "scenario": "recover_timeouts",
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "after_quotes_status": "quoting",
+        "suitable": [
+          "ins_northwind_a",
+          "ins_harborline_b"
+        ],
+        "excluded": [
+          "ins_cedar_c"
+        ],
+        "undetermined": [],
+        "missing_responses": [],
+        "unsupported_claims": 0
+      }
+    },
+    {
+      "id": "eval_033",
+      "title": "Quotes expire after 31 days; case expires and can be refreshed",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "customer_id": "cus_demo_1",
+      "needs_overrides": {},
+      "interview": {
+        "deductible_cap_minor": 100000,
+        "required_item_classes": [
+          "jewelry",
+          "bicycles"
+        ],
+        "deductible_preference": "lower_premium"
+      },
+      "question_answers": {},
+      "faults": [],
+      "select_insurer": "ins_northwind_a",
+      "scenario": "expire_quotes",
+      "accept_revision": true,
+      "underwriting_hours": 5,
+      "expected": {
+        "expired_state": "expired",
+        "final_state": "awaiting_selection"
+      }
+    }
+  ]
+}

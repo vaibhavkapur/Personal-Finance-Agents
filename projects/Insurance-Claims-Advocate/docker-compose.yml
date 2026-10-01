@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: claims
+      POSTGRES_PASSWORD: claims
+      POSTGRES_DB: claims
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U claims"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    environment: &app_env
+      DATABASE_URL: postgresql+psycopg://claims:claims@db:5432/claims
+      APP_ENV: mock
+      CLAIMS_ADAPTER: mock          # mock | a2a | sandbox
+      AGENT_PLANNER: scripted       # scripted | llm (needs LLM_BASE_URL / LLM_API_KEY / LLM_MODEL)
+      DEV_ENDPOINTS: "1"
+      PROVIDER_WEBHOOK_SECRET: mock-insurer-shared-secret
+      OUTBOUND_WEBHOOK_SECRET: advocate-webhook-secret
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "python scripts/seed.py && uvicorn app.main:create_app --factory --app-dir backend --host 0.0.0.0 --port 8000"
+
+  worker:
+    build: .
+    environment: *app_env
+    depends_on:
+      db:
+        condition: service_healthy
+      api:
+        condition: service_started
+    command: python scripts/worker.py
+
+  # The mock insurer runs in-process (it also serves the A2A insurer agent at /insurer-agent on the api service).
+  # To exercise it as a separate deployment, run a second api container and point CLAIMS_ADAPTER=a2a at it via A2A_BASE_URL.
+
+volumes:
+  pgdata:

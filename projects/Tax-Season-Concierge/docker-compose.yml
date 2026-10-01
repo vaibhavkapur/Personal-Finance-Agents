@@ -1,0 +1,45 @@
+name: tax-season-concierge
+x-app: &app
+  build: .
+  init: true
+  restart: unless-stopped
+  environment: &environment
+    DATABASE_URL: postgresql://concierge:synthetic_demo_only@db:5432/tax_concierge
+    MOCK_PROVIDER_URL: http://mock-provider:8097
+    MOCK_PROVIDER_TOKEN: local-synthetic-provider-only
+    WEBHOOK_SECRET: local-synthetic-webhook-only
+    RUN_WORKER: "0"
+  depends_on:
+    db:
+      condition: service_healthy
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: tax_concierge
+      POSTGRES_USER: concierge
+      POSTGRES_PASSWORD: synthetic_demo_only
+    ports:
+      - "127.0.0.1:5496:5432"
+    volumes:
+      - tax-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U concierge -d tax_concierge"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+  api:
+    <<: *app
+    ports:
+      - "127.0.0.1:8096:8096"
+  worker:
+    <<: *app
+    command: ["python", "-m", "app.worker"]
+  mock-provider:
+    <<: *app
+    environment:
+      <<: *environment
+      MOCK_PROVIDER_URL: ""
+    command: ["uvicorn", "app.adapters.service:app", "--host", "0.0.0.0", "--port", "8097"]
+volumes:
+  tax-data:

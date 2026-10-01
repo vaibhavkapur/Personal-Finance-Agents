@@ -1,0 +1,32 @@
+{
+  "document_id": "offer_doc_b",
+  "owner_customer_id": "cus_demo_5",
+  "kind": "loan_estimate",
+  "source": "fixture",
+  "captured_at": "2026-09-21T00:00:00Z",
+  "extraction_version": "fixture-1",
+  "lender_id": "lender_mock_b",
+  "lender_name": "Harbor Home Loans (mock)",
+  "product": "30-year fixed (conventional refinance)",
+  "loan_amount_minor": 30000000,
+  "term_months": 360,
+  "note_rate_decimal": "0.06625",
+  "apr_disclosed_decimal": "0.0681",
+  "monthly_pi_minor": 192093,
+  "issued_at": "2026-09-21T00:00:00Z",
+  "expires_at": "2026-10-05T23:59:00Z",
+  "rate_lock": { "locked": false, "lock_period_days": 30, "note": "Rate not locked." },
+  "status": "indicative_quote",
+  "cost_items": [
+    { "category": "A", "label": "1.0% of loan amount (points)", "amount_minor": 300000, "source": { "page": 2, "section": "A" } },
+    { "category": "A", "label": "Underwriting fee", "amount_minor": 110000, "source": { "page": 2, "section": "A" } },
+    { "category": "B", "label": "Appraisal fee", "amount_minor": 60000, "source": { "page": 2, "section": "B" } },
+    { "category": "B", "label": "Flood determination", "amount_minor": 5000, "source": { "page": 2, "section": "B" } },
+    { "category": "C", "label": "Title - lender's title insurance and settlement", "amount_minor": 105000, "source": { "page": 2, "section": "C" } },
+    { "category": "E", "label": "Recording fees", "amount_minor": 20000, "source": { "page": 2, "section": "E" } },
+    { "category": "F", "label": "Prepaid interest (15 days)", "amount_minor": 77000, "source": { "page": 2, "section": "F" } },
+    { "category": "F", "label": "Homeowner's insurance premium (12 months)", "amount_minor": 120000, "source": { "page": 2, "section": "F" } },
+    { "category": "G", "label": "Initial escrow payment at closing", "amount_minor": 210000, "source": { "page": 2, "section": "G" } }
+  ],
+  "lender_credits_minor": 0
+}

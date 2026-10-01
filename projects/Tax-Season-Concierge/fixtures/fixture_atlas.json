@@ -1,0 +1,17 @@
+{
+  "form_type": "W-2",
+  "issuer_ref": "fixture_atlas",
+  "issuer_name": "Atlas Technologies",
+  "taxpayer_ref": "SYNTHETIC-ALEX-2025",
+  "tax_year": 2025,
+  "currency": "USD",
+  "wages_minor": 3000025,
+  "federal_withholding_minor": 340000,
+  "interest_minor": null,
+  "social_security_minor": 186002,
+  "medicare_minor": 43500,
+  "unsupported_flags": [],
+  "supersedes_form_id": null,
+  "confirmed": true,
+  "synthetic": true
+}

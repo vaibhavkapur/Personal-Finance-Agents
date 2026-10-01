@@ -1,0 +1,72 @@
+import { test, expect } from '@playwright/test';
+import path from 'node:path';
+const shots=path.resolve('../docs/screenshots');
+
+test('review, approve, reconcile, late payment, timeout and return',async({page})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/');
+ await expect(page.getByRole('heading',{name:'Good morning, Alex.'})).toBeVisible();
+ await expect(page.getByRole('button',{name:'Review your payday'})).toBeEnabled();
+ await page.screenshot({path:path.join(shots,'overview-desktop.png'),fullPage:true});
+ await page.getByRole('button',{name:'Review your payday'}).click();
+ await expect(page.getByRole('dialog')).toBeVisible();
+ await expect(page.getByRole('button',{name:'Approve $3,000 payout'})).toBeDisabled();
+ await page.screenshot({path:path.join(shots,'transfer-review.png'),fullPage:true});
+ await page.getByRole('checkbox').check();
+ await page.getByRole('button',{name:'Approve $3,000 payout'}).click();
+ await expect(page.getByText('Your payday is complete.')).toBeVisible();
+ await page.getByRole('button',{name:'Operations',exact:true}).click();
+ await expect(page.getByText('Debit:',{exact:false})).toBeVisible();
+ await page.getByRole('button',{name:'Return the latest posted payout'}).click();
+ await expect(page.locator('.calculation').getByText('recovery review')).toBeVisible();
+ await page.getByRole('button',{name:'Overview',exact:true}).click();
+ await page.getByRole('button',{name:'Calculate a new payday'}).click();
+ await expect(page.getByRole('button',{name:'Review your payday'})).toBeEnabled();
+ await page.getByRole('button',{name:'Operations',exact:true}).click();
+ await page.getByRole('button',{name:'Client stays late; business spends $2,500'}).click();
+ await page.getByLabel('Next transfer behavior').selectOption('timeout');
+ await page.getByRole('button',{name:'Overview',exact:true}).click();
+ await expect(page.getByText('$1,500 below your request.',{exact:false})).toBeVisible();
+ await page.getByRole('button',{name:'Review your payday'}).click();
+ await page.getByRole('checkbox').check();
+ await page.getByRole('button',{name:'Approve $1,500 payout'}).click();
+ await expect(page.getByText('Waiting for bank confirmation.')).toBeVisible();
+ await page.getByRole('button',{name:'Operations',exact:true}).click();
+ await page.getByRole('button',{name:'Post pending bank transfers'}).click();
+ await expect(page.locator('.calculation').getByText('reconciled',{exact:true})).toBeVisible();
+ await page.screenshot({path:path.join(shots,'operations.png'),fullPage:true});
+ await page.getByRole('button',{name:'Reserves',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'The cash check'})).toBeVisible();
+ await expect(page.locator('.calculation').getByText('$0',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Payday assistant',exact:false}).click();
+ await page.getByRole('textbox',{name:'Message your payday assistant'}).fill('What is the transfer status?');
+ await page.getByRole('button',{name:'Send message'}).click();
+ await expect(page.locator('.message').getByText('The payout is reconciled.',{exact:false})).toBeVisible();
+ expect(errors).toEqual([]);
+});
+
+test('mobile navigation and layout fit the screen',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/');
+ await expect(page.getByRole('heading',{name:'Good morning, Alex.'})).toBeVisible();
+ await page.screenshot({path:path.join(shots,'overview-mobile.png'),fullPage:true});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+ await page.getByRole('button',{name:'Activity',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Posted transactions'})).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});
+
+test('policy edits require review and persisted input versions',async({page})=>{
+ await page.goto('/');
+ await page.getByRole('button',{name:'Reserves',exact:true}).click();
+ await page.getByRole('button',{name:'Edit policy'}).click();
+ await page.getByLabel('Provisional tax reserve (%)').fill('30');
+ await page.getByRole('button',{name:'Review policy changes'}).click();
+ await expect(page.getByRole('heading',{name:'Review your new reserve policy.'})).toBeVisible();
+ await expect(page.getByText('25% → 30%')).toBeVisible();
+ await page.getByRole('button',{name:'Approve reserve policy'}).click();
+ await expect(page.getByText('Your reserve policy is version 2.',{exact:false})).toBeVisible();
+ await page.reload();
+ await page.getByRole('button',{name:'Reserves',exact:true}).click();
+ await expect(page.getByText('Your reserve policy is version 2.',{exact:false})).toBeVisible();
+});

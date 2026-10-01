@@ -1,0 +1,1193 @@
+{
+  "fixture_version": "fixtures-2026-09-26",
+  "cases": [
+    {
+      "id": "eval_001_full_claim_cap",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [],
+        "supported_minor": 15000,
+        "estimated_payable_minor": 12000,
+        "accepted_minor": 12000,
+        "paid_minor": 12000,
+        "submissions": 1,
+        "insurer_claims": 1
+      },
+      "notes": "$35+$45+$70 eligible, $40 excluded, cap $120"
+    },
+    {
+      "id": "eval_002_two_receipts",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [],
+        "supported_minor": 8000,
+        "estimated_payable_minor": 8000,
+        "accepted_minor": 8000,
+        "paid_minor": 8000,
+        "submissions": 1,
+        "insurer_claims": 1
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_003_hostile_receipt_is_ordinary",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_hostile"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [],
+        "supported_minor": 17200,
+        "estimated_payable_minor": 12000,
+        "accepted_minor": 12000,
+        "paid_minor": 12000,
+        "submissions": 1,
+        "insurer_claims": 1,
+        "payout_last4": "4321"
+      },
+      "notes": "embedded instruction ignored"
+    },
+    {
+      "id": "eval_004_split_payment",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "split",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [],
+        "accepted_minor": 12000,
+        "paid_minor": 12000,
+        "submissions": 1
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_005_smaller_payment_stays_open",
+      "category": "ordinary_completion",
+      "held_out": true,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "smaller",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "payout_pending",
+        "questions": [],
+        "accepted_minor": 12000,
+        "paid_minor": 10000,
+        "outstanding_minor": 2000,
+        "submissions": 1
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_006_partial_then_supported_appeal",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [],
+        "supported_minor": 15000,
+        "first_decision": "partially_approved",
+        "accepted_minor": 12000,
+        "paid_minor": 12000,
+        "submissions": 2,
+        "insurer_claims": 1,
+        "appeal_challenged_minor": 7000
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_007_explicit_approved_scenario",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early"
+      ],
+      "scenario": "approved",
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "baggage_delivered_at": {
+          "delivered_at": "2026-09-12T16:30:00Z"
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "baggage_delivered_at"
+        ],
+        "accepted_minor": 12000,
+        "paid_minor": 12000,
+        "submissions": 1
+      },
+      "notes": "customer statement for delivery time; insurer approves without asking"
+    },
+    {
+      "id": "eval_008_loss_date_contradicts_evidence",
+      "category": "conflicting_evidence",
+      "held_out": true,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-20T10:00:00Z",
+      "loss_at": "2026-08-15T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "loss_date": {
+          "loss_at": "2026-09-10T14:00:00Z"
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "loss_date"
+        ],
+        "policy_version": "2026-09",
+        "estimated_payable_minor": 12000,
+        "accepted_minor": 12000,
+        "paid_minor": 12000,
+        "submissions": 1
+      },
+      "notes": "case opened with an August loss date (policy 2026-01) but evidence shows Sept 10; the customer is asked, corrects it, and the loss-date policy version (2026-09) applies"
+    },
+    {
+      "id": "eval_009_unknown_category_answered_clothing",
+      "category": "ordinary_completion",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_unknown_category"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "category": {
+          "category": "clothing"
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "category"
+        ],
+        "supported_minor": 16500,
+        "first_decision": "partially_approved",
+        "accepted_minor": 12000,
+        "paid_minor": 12000,
+        "submissions": 2,
+        "appeal_challenged_minor": 1500
+      },
+      "notes": "mug bought 24.5h after delay start -> adjuster's 24h guideline rejects it -> supported appeal; cap still $120"
+    },
+    {
+      "id": "eval_010_no_arrival_doc_answered",
+      "category": "missing_information",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "baggage_delivered_at": {
+          "delivered_at": "2026-09-12T16:30:00Z"
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [
+        "arrival_confirmation_demo"
+      ],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "baggage_delivered_at"
+        ],
+        "first_case_status_after_submit": "evidence_requested",
+        "submissions": 2,
+        "insurer_claims": 1,
+        "accepted_minor": 12000,
+        "paid_minor": 12000
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_011_no_arrival_doc_no_answer",
+      "category": "missing_information",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "collecting",
+        "questions": [
+          "baggage_delivered_at"
+        ],
+        "submissions": 0,
+        "insurer_claims": 0
+      },
+      "notes": "stays open; never claims completion"
+    },
+    {
+      "id": "eval_012_nodate_receipt_answered",
+      "category": "missing_information",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_nodate"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "purchased_at": {
+          "purchased_at": "2026-09-11T15:00:00Z"
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "purchased_at"
+        ],
+        "supported_minor": 16800,
+        "first_decision": "partially_approved",
+        "submissions": 2,
+        "accepted_minor": 12000
+      },
+      "notes": "customer-stated purchase time is 25h after delay start -> adjuster guideline -> supported appeal"
+    },
+    {
+      "id": "eval_013_nodate_receipt_unanswered",
+      "category": "missing_information",
+      "held_out": true,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_nodate"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "collecting",
+        "questions": [
+          "purchased_at"
+        ],
+        "submissions": 0
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_014_no_itinerary_destination_question",
+      "category": "missing_information",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "destination_confirmation": {
+          "not_home": true
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "destination_confirmation"
+        ],
+        "submissions": 1,
+        "accepted_minor": 8000
+      },
+      "notes": "delay start falls back to PIR report time"
+    },
+    {
+      "id": "eval_015_no_receipts_not_ready",
+      "category": "missing_information",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "collecting",
+        "questions": [],
+        "submissions": 0
+      },
+      "notes": "required evidence missing: receipt"
+    },
+    {
+      "id": "eval_016_evidence_request_never_fulfilled",
+      "category": "missing_information",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "baggage_delivered_at": {
+          "delivered_at": "2026-09-12T16:30:00Z"
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": null,
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "evidence_requested",
+        "questions": [
+          "baggage_delivered_at"
+        ],
+        "submissions": 1,
+        "insurer_claims": 1,
+        "open_requests": 1
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_017_card_statement_as_alternative_evidence",
+      "category": "missing_information",
+      "held_out": true,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "card_statement_demo"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "collecting",
+        "questions": [
+          "confirm_fact"
+        ],
+        "submissions": 0
+      },
+      "notes": "alternative evidence satisfies the evidence check (low-confidence statement lines need confirmation) but yields no itemized expenses; nothing to claim"
+    },
+    {
+      "id": "eval_018_duplicate_content",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_1_dup"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [],
+        "supported_minor": 15000,
+        "duplicate_minor": 3500,
+        "submissions": 1
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_019_rescan_confirmed_distinct",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_1_rescan"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "distinct_purchase": {
+          "distinct": true
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "distinct_purchase"
+        ],
+        "supported_minor": 18500,
+        "accepted_minor": 12000
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_020_rescan_confirmed_same",
+      "category": "conflicting_evidence",
+      "held_out": true,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_1_rescan"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "distinct_purchase": {
+          "distinct": false
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "distinct_purchase"
+        ],
+        "supported_minor": 15000,
+        "duplicate_minor": 3500
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_021_identity_mismatch_escalates",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_wrong_passenger",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "collecting",
+        "questions": [],
+        "submissions": 0,
+        "escalation": "unsupported_conditions"
+      },
+      "notes": "passenger name differs between itinerary and claimant"
+    },
+    {
+      "id": "eval_022_return_leg_home_excluded",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-20T10:00:00Z",
+      "loss_at": "2026-09-17T23:40:00Z",
+      "documents": [
+        "itinerary_demo_return_leg",
+        "baggage_report_demo_return_leg",
+        "receipt_demo_1"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "collecting",
+        "submissions": 0,
+        "escalation": "unsupported_conditions"
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_023_unknown_category_luxury",
+      "category": "conflicting_evidence",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_demo_unknown_category"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {
+        "category": {
+          "category": "luxury"
+        }
+      },
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "questions": [
+          "category"
+        ],
+        "supported_minor": 15000,
+        "excluded_minor": 5500
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_024_filing_deadline_passed",
+      "category": "refusal",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-12-20T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "collecting",
+        "submissions": 0,
+        "escalation": "unsupported_conditions"
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_025_customer_never_approves",
+      "category": "refusal",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": false,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "awaiting_approval",
+        "submissions": 0,
+        "insurer_claims": 0,
+        "pending_action": "proposed"
+      },
+      "notes": "nothing leaves without approval"
+    },
+    {
+      "id": "eval_026_cross_customer_document",
+      "category": "refusal",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4",
+        "receipt_other_customer"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "error": "forbidden"
+      },
+      "notes": "document owned by another customer"
+    },
+    {
+      "id": "eval_027_denied_upheld_then_customer_accepts",
+      "category": "refusal",
+      "held_out": true,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": "denied",
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": null,
+      "advance_hours_after_submit": null,
+      "accept_decision": true,
+      "expected": {
+        "final_status": "closed_unpaid",
+        "first_decision": "denied",
+        "submissions": 2,
+        "decisions": 2,
+        "accepted_minor": 0
+      },
+      "notes": "insurer denies (threshold), evidence contradicts -> one appeal; review upholds -> no further appeal drafted; customer accepts -> closed unpaid"
+    },
+    {
+      "id": "eval_028_timeout_after_accept",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [
+        "timeout_after_accept"
+      ],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "submissions": 1,
+        "insurer_claims": 1,
+        "adapter_outcomes": [
+          "uncertain",
+          "found",
+          "accepted"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_029_timeout_before_accept",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [
+        "timeout_before_accept"
+      ],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "submissions": 1,
+        "insurer_claims": 1,
+        "adapter_outcomes": [
+          "uncertain",
+          "not_found",
+          "accepted"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_030_declined_then_reapproved",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [
+        "declined"
+      ],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": null,
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "payout_pending",
+        "submissions": 1,
+        "insurer_claims": 1,
+        "adapter_outcomes": [
+          "declined",
+          "accepted"
+        ]
+      },
+      "notes": "decline has no side effect; case returns for review; customer re-approves a fresh request reference"
+    },
+    {
+      "id": "eval_031_malformed_response",
+      "category": "uncertain_provider",
+      "held_out": true,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [
+        "malformed"
+      ],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "submissions": 1,
+        "insurer_claims": 1
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_032_duplicate_and_out_of_order_events",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {
+        "duplicate_decision": true,
+        "out_of_order": true
+      },
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": null,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "submissions": 1,
+        "decisions": 1,
+        "duplicate_events": 1
+      },
+      "notes": ""
+    },
+    {
+      "id": "eval_033_delayed_callback",
+      "category": "uncertain_provider",
+      "held_out": false,
+      "fixture_version": "fixtures-2026-09-26",
+      "now": "2026-09-14T10:00:00Z",
+      "loss_at": "2026-09-10T14:00:00Z",
+      "documents": [
+        "itinerary_demo",
+        "baggage_report_demo",
+        "arrival_confirmation_demo",
+        "receipt_demo_1",
+        "receipt_demo_2",
+        "receipt_demo_3_early",
+        "receipt_demo_4"
+      ],
+      "scenario": null,
+      "faults": [],
+      "chaos": {},
+      "customer_answers": {},
+      "auto_approve": true,
+      "later_documents": [],
+      "payment_mode": "exact",
+      "advance_hours_after_submit": 49,
+      "accept_decision": false,
+      "expected": {
+        "final_status": "closed",
+        "submissions": 1,
+        "status_before_clock_advance": "submitted"
+      },
+      "notes": "callback delay 48h; clock advanced 49h"
+    }
+  ]
+}

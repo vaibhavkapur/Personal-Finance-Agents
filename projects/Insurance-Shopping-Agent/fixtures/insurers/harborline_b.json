@@ -1,0 +1,59 @@
+{
+  "fixture_version": "2026.09.1",
+  "insurer_id": "ins_harborline_b",
+  "display_name": "Harborline Insurance Co. (fictional)",
+  "label": "B",
+  "environment": "mock",
+  "webhook_secret": "mock-secret-harborline",
+  "a2a": {"default_port": 9002, "protocol_version": "0.3.0"},
+  "behavior": {
+    "response_latency_ms": 400,
+    "asks_followup_question_id": null,
+    "revise_premium_in_underwriting": null,
+    "decline_in_underwriting": null,
+    "underwriting_duration_minutes": 240,
+    "quote_validity_days": 21
+  },
+  "policy_form": {
+    "policy_form_version": "HL-RT-2026.2",
+    "clauses": [
+      {"id": "HL-COV-C", "title": "Personal Property Coverage", "text": "We insure personal property you own or use against direct physical loss from a covered cause, up to the personal property limit in your Declarations."},
+      {"id": "HL-COV-L", "title": "Personal Liability Coverage", "text": "We pay damages for which an insured is legally liable because of bodily injury or property damage arising from a covered occurrence, up to the liability limit in your Declarations."},
+      {"id": "HL-LOSS-RC", "title": "Replacement Cost Settlement", "text": "We settle covered personal property losses at the cost to repair or replace with like kind and quality, without deduction for depreciation."},
+      {"id": "HL-DED", "title": "Deductible", "text": "A deductible of $500 applies to each covered loss unless a different amount is shown in your Declarations."},
+      {"id": "HL-SUB-JEWELRY", "title": "Special Limit – Jewelry and Watches", "text": "Theft of jewelry, watches and furs is limited to $5,000 per occurrence."},
+      {"id": "HL-SUB-BUS", "title": "Special Limit – Business Property", "text": "Business property on the residence premises is covered up to $2,500 per occurrence."},
+      {"id": "HL-END-IDT", "title": "Endorsement – Identity Recovery", "text": "We reimburse up to $15,000 of identity recovery expenses per policy period. This endorsement is included at no additional premium."},
+      {"id": "HL-EX-1", "title": "Exclusion – Motor Vehicles", "text": "We do not cover motorized land vehicles except those used solely to service the residence premises or assist the handicapped."},
+      {"id": "HL-EX-2", "title": "Exclusion – Flood and Earth Movement", "text": "Loss caused by flood, tidal water, earthquake, landslide or other earth movement is not covered."}
+    ]
+  },
+  "product": {
+    "currency": "USD",
+    "base_annual_premium_minor": 21000,
+    "base_property_limit_minor": 3000000,
+    "base_liability_limit_minor": 10000000,
+    "property_step_minor": 100000,
+    "property_step_premium_minor": 400,
+    "liability_options_minor": {"10000000": 0, "30000000": 3000, "50000000": 4800},
+    "deductible_options_minor": [50000, 100000],
+    "default_deductible_minor": 50000,
+    "replacement_cost": true,
+    "max_property_limit_minor": 10000000,
+    "item_classes": {
+      "jewelry": {"status": "covered_with_sublimit", "sublimit_minor": 500000, "clause_id": "HL-SUB-JEWELRY"},
+      "bicycles": {"status": "covered", "clause_id": "HL-COV-C"},
+      "electronics": {"status": "covered", "clause_id": "HL-COV-C"},
+      "musical_instruments": {"status": "covered", "clause_id": "HL-COV-C"},
+      "home_business_property": {"status": "covered_with_sublimit", "sublimit_minor": 250000, "clause_id": "HL-SUB-BUS"}
+    },
+    "endorsements": ["HL-END-IDT"],
+    "exclusions": ["HL-EX-1", "HL-EX-2"]
+  },
+  "questions": [
+    {"id": "hl_q_animals", "text": "Are there any animals kept in the household?", "type": "boolean", "required": true, "material": true},
+    {"id": "hl_q_building", "text": "What type of building is the rental unit in?", "type": "choice", "choices": ["apartment", "condo", "house", "other"], "required": true, "material": false},
+    {"id": "hl_q_claims", "text": "Have you filed any property insurance claims in the last 3 years?", "type": "boolean", "required": true, "material": true}
+  ],
+  "required_needs_fields": ["address", "effective_date", "property_limit_minor", "liability_limit_minor"]
+}

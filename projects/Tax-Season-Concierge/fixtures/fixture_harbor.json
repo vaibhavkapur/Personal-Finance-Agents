@@ -1,0 +1,17 @@
+{
+  "form_type": "1099-INT",
+  "issuer_ref": "fixture_harbor",
+  "issuer_name": "Harbor Bank",
+  "taxpayer_ref": "SYNTHETIC-ALEX-2025",
+  "tax_year": 2025,
+  "currency": "USD",
+  "wages_minor": null,
+  "federal_withholding_minor": 0,
+  "interest_minor": 24575,
+  "social_security_minor": 0,
+  "medicare_minor": 0,
+  "unsupported_flags": [],
+  "supersedes_form_id": null,
+  "confirmed": true,
+  "synthetic": true
+}

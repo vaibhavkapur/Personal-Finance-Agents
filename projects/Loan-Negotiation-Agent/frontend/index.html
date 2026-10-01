@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loan Negotiation Agent (prototype)</title>
+  <link rel="stylesheet" href="/app/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">Loan Negotiation Agent <span class="tag" id="env-tag">mock</span></div>
+    <nav>
+      <button data-view="customer" class="active">Borrower</button>
+      <button data-view="operator">Operator</button>
+    </nav>
+    <div class="auth">
+      <label>Token <input id="token" value="demo-borrower-token" size="22" /></label>
+      <label>Operator <input id="op-token" value="demo-operator-token" size="20" /></label>
+      <span id="clock" class="muted"></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-customer">
+      <aside class="sidebar">
+        <h3>Your cases</h3>
+        <ul id="case-list"></ul>
+        <h3>Start a case</h3>
+        <form id="create-form">
+          <label>Mortgage <select id="mortgage-select"></select></label>
+          <label>Holding horizon (months) <input id="horizon" type="number" value="48" min="1" /></label>
+          <label>Max cash to close (USD) <input id="max-cash" type="number" value="6000" min="0" /></label>
+          <fieldset><legend>Loan Estimates</legend><div id="offer-docs"></div></fieldset>
+          <button type="submit">Create case</button>
+        </form>
+        <p class="muted small">All records are synthetic. Nothing here contacts a real lender.</p>
+      </aside>
+
+      <div class="content" id="case-panel">
+        <p class="muted">Select or create a case.</p>
+      </div>
+    </section>
+
+    <section id="view-operator" hidden>
+      <div class="ops-grid">
+        <div class="card">
+          <h3>Controls</h3>
+          <div class="row">
+            <button id="op-run-once">Run worker once</button>
+            <button id="op-drain">Drain jobs</button>
+            <button id="op-callbacks">Deliver callbacks</button>
+          </div>
+          <div class="row">
+            <label>Advance clock (days) <input id="op-days" type="number" value="1" min="0" /></label>
+            <button id="op-advance">Advance</button>
+          </div>
+          <div class="row">
+            <label>Inject fault
+              <select id="op-fault">
+                <option value="timeout_after_accept">timeout_after_accept</option>
+                <option value="malformed_response">malformed_response</option>
+                <option value="declined">declined</option>
+                <option value="delayed_callback">delayed_callback</option>
+                <option value="quote_expired">quote_expired</option>
+                <option value="changed_closing_costs">changed_closing_costs</option>
+              </select>
+            </label>
+            <button id="op-inject">Inject (next call)</button>
+          </div>
+          <pre id="op-result" class="small"></pre>
+        </div>
+        <div class="card"><h3>Metrics</h3><pre id="op-metrics" class="small"></pre></div>
+        <div class="card"><h3>Cases</h3><div id="op-cases"></div></div>
+        <div class="card"><h3>Jobs</h3><div id="op-jobs"></div></div>
+        <div class="card wide"><h3>Adapter requests (redacted)</h3><div id="op-adapter"></div></div>
+        <div class="card wide"><h3>Case detail</h3><div id="op-case-detail" class="small"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <template id="tpl-case">
+    <div class="case-header">
+      <h2>Case <span class="case-id"></span> <span class="tag state"></span> <span class="muted">v<span class="version"></span></span></h2>
+      <p class="next-decision"></p>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>Existing mortgage</h3><div class="mortgage"></div></div>
+      <div class="card"><h3>Open questions</h3><div class="questions"></div></div>
+      <div class="card wide"><h3>Comparison at your horizon</h3><div class="comparison"></div></div>
+      <div class="card wide approvals"><h3>Awaiting your approval</h3><div class="pending"></div></div>
+      <div class="card"><h3>Offers and lender conversation</h3><div class="offers"></div><div class="lender-requests"></div></div>
+      <div class="card"><h3>Application</h3><div class="applications"></div></div>
+      <div class="card wide"><h3>Conversation</h3><div class="messages"></div>
+        <form class="chat-form"><input class="chat-input" placeholder="e.g. Is refinancing worth it if I stay four more years?" /><button type="submit">Send</button></form>
+        <div class="quick">
+          <button data-msg="Yes, the balance is correct and my payment includes escrow.">Confirm facts</button>
+          <button data-msg="Is refinancing worth it?">Compare</button>
+          <button data-msg="Ask my lender whether it can offer better terms.">Ask my lender</button>
+          <button data-msg="Ask Harbor to match Northstar.">Ask Harbor to match</button>
+          <button data-msg="Apply with the best offer.">Apply (best offer)</button>
+          <button data-msg="I'll keep my current loan.">Keep current</button>
+          <button data-msg="Accept the final terms and close.">Review final terms</button>
+        </div>
+      </div>
+      <div class="card wide"><h3>Timeline</h3><div class="timeline small"></div></div>
+    </div>
+  </template>
+
+  <script src="/app/app.js"></script>
+</body>
+</html>

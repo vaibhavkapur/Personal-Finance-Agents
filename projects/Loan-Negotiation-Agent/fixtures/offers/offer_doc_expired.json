@@ -1,0 +1,26 @@
+{
+  "document_id": "offer_doc_expired",
+  "owner_customer_id": "cus_demo_5",
+  "kind": "loan_estimate",
+  "source": "fixture",
+  "captured_at": "2026-09-02T00:00:00Z",
+  "extraction_version": "fixture-1",
+  "lender_id": "lender_mock_a",
+  "lender_name": "Northstar Mortgage (mock)",
+  "product": "25-year fixed (conventional refinance)",
+  "loan_amount_minor": 30000000,
+  "term_months": 300,
+  "note_rate_decimal": "0.0640",
+  "apr_disclosed_decimal": "0.0655",
+  "issued_at": "2026-09-01T00:00:00Z",
+  "expires_at": "2026-09-15T23:59:00Z",
+  "rate_lock": { "locked": false, "lock_period_days": 30 },
+  "status": "indicative_quote",
+  "cost_items": [
+    { "category": "A", "label": "Underwriting fee", "amount_minor": 99500, "source": { "page": 2, "section": "A" } },
+    { "category": "B", "label": "Appraisal fee", "amount_minor": 55000, "source": { "page": 2, "section": "B" } },
+    { "category": "C", "label": "Title", "amount_minor": 120000, "source": { "page": 2, "section": "C" } },
+    { "category": "E", "label": "Recording fees", "amount_minor": 20000, "source": { "page": 2, "section": "E" } }
+  ],
+  "lender_credits_minor": 0
+}

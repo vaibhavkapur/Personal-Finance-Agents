@@ -1,0 +1,53 @@
+x-app: &app
+  build: .
+  environment: &env
+    DATABASE_URL: postgresql+psycopg://concierge:local-demo-only@db:5432/concierge
+    PROVIDER_SHARED_SECRET: local-fixture-webhook-secret
+    ENABLE_DEMO: "1"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: concierge
+      POSTGRES_USER: concierge
+      POSTGRES_PASSWORD: local-demo-only
+    volumes:
+      - concierge-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U concierge"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  migrate:
+    <<: *app
+    command: ["python", "-m", "scripts.migrate"]
+    depends_on:
+      db: {condition: service_healthy}
+  mock-bank:
+    <<: *app
+    command: ["python", "-m", "uvicorn", "backend.app.adapters.server:app", "--host", "0.0.0.0", "--port", "8094", "--no-access-log"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8094/openapi.json')"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  api:
+    <<: *app
+    environment:
+      <<: *env
+      MOCK_PROVIDER_URL: http://mock-bank:8094
+    ports: ["127.0.0.1:8093:8093"]
+    depends_on:
+      mock-bank: {condition: service_healthy}
+  worker:
+    <<: *app
+    environment:
+      <<: *env
+      MOCK_PROVIDER_URL: http://mock-bank:8094
+    command: ["python", "-m", "backend.app.workflows.worker"]
+    depends_on:
+      mock-bank: {condition: service_healthy}
+volumes:
+  concierge-data:

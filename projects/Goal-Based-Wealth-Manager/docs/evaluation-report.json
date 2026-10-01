@@ -1,0 +1,280 @@
+{
+  "fixture_version": "1.0.0",
+  "planner": "rules-only baseline",
+  "llm_comparison": "Not run; no LLM configured. No model quality claim.",
+  "model_cost_usd": 0,
+  "total": 30,
+  "passed": 30,
+  "results": [
+    {
+      "id": "eval_01",
+      "split": "development",
+      "expected": "revision_suggested",
+      "actual": "revision_suggested",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_02",
+      "split": "development",
+      "expected": "revision_suggested",
+      "actual": "revision_suggested",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_03",
+      "split": "development",
+      "expected": "revision_suggested",
+      "actual": "revision_suggested",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_04",
+      "split": "held_out",
+      "expected": "revision_suggested",
+      "actual": "revision_suggested",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_05",
+      "split": "development",
+      "expected": "funding_gap",
+      "actual": "funding_gap",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_06",
+      "split": "development",
+      "expected": "funding_gap",
+      "actual": "funding_gap",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_07",
+      "split": "development",
+      "expected": "funding_gap",
+      "actual": "funding_gap",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_08",
+      "split": "held_out",
+      "expected": "funding_gap",
+      "actual": "funding_gap",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_09",
+      "split": "development",
+      "expected": "analysis",
+      "actual": "analysis",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_10",
+      "split": "development",
+      "expected": "analysis",
+      "actual": "analysis",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_11",
+      "split": "development",
+      "expected": "analysis",
+      "actual": "analysis",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_12",
+      "split": "development",
+      "expected": "analysis",
+      "actual": "analysis",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_13",
+      "split": "development",
+      "expected": "analysis",
+      "actual": "analysis",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_14",
+      "split": "held_out",
+      "expected": "analysis",
+      "actual": "analysis",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_15",
+      "split": "development",
+      "expected": "missing_information",
+      "actual": "missing_information",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_16",
+      "split": "development",
+      "expected": "missing_information",
+      "actual": "missing_information",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_17",
+      "split": "development",
+      "expected": "missing_information",
+      "actual": "missing_information",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_18",
+      "split": "held_out",
+      "expected": "missing_information",
+      "actual": "missing_information",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 2
+    },
+    {
+      "id": "eval_19",
+      "split": "development",
+      "expected": "refusal",
+      "actual": "refusal",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_20",
+      "split": "development",
+      "expected": "refusal",
+      "actual": "refusal",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_21",
+      "split": "development",
+      "expected": "refusal",
+      "actual": "refusal",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_22",
+      "split": "development",
+      "expected": "refusal",
+      "actual": "refusal",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_23",
+      "split": "development",
+      "expected": "refusal",
+      "actual": "refusal",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_24",
+      "split": "development",
+      "expected": "refusal",
+      "actual": "refusal",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_25",
+      "split": "held_out",
+      "expected": "refusal",
+      "actual": "refusal",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_26",
+      "split": "development",
+      "expected": "conflicting_evidence",
+      "actual": "conflicting_evidence",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_27",
+      "split": "development",
+      "expected": "conflicting_evidence",
+      "actual": "conflicting_evidence",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_28",
+      "split": "development",
+      "expected": "conflicting_evidence",
+      "actual": "conflicting_evidence",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 0
+    },
+    {
+      "id": "eval_29",
+      "split": "development",
+      "expected": "status",
+      "actual": "status",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 3
+    },
+    {
+      "id": "eval_30",
+      "split": "held_out",
+      "expected": "status",
+      "actual": "status",
+      "passed": true,
+      "financial_state_unchanged": true,
+      "tool_calls": 3
+    }
+  ]
+}

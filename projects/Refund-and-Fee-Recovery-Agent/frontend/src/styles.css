@@ -1,0 +1,38 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #1c1f24; background: #f6f7f9; }
+body { margin: 0; }
+.app { max-width: 1200px; margin: 0 auto; padding: 16px; }
+header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
+header h1 { font-size: 20px; margin: 0; }
+nav button { margin-right: 6px; }
+button { border: 1px solid #b9c0cc; background: #fff; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+button.active, button.primary { background: #1e5eff; color: #fff; border-color: #1e5eff; }
+button.secondary { background: #eef1f6; }
+button:disabled { opacity: 0.5; cursor: default; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e3e6ec; vertical-align: top; }
+tr.clickable { cursor: pointer; }
+tr.clickable:hover { background: #eef3ff; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px; margin: 12px 0; }
+.card { background: #fff; border: 1px solid #e3e6ec; border-radius: 8px; padding: 12px; }
+.card.review { border-color: #ffb547; background: #fff9ee; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 0; }
+dt { color: #5b6470; }
+dd { margin: 0; }
+.muted { color: #6b7380; }
+.small { font-size: 12px; }
+.ok { color: #157347; }
+.warn { color: #b25e00; }
+.error { background: #fde8e8; color: #8a1c1c; padding: 8px; border-radius: 6px; margin: 8px 0; }
+.badge.env { background: #fff3cd; color: #7a5a00; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+.state { padding: 2px 8px; border-radius: 999px; font-size: 12px; background: #e9ecf1; }
+.state.recovered, .state.already_refunded { background: #d8f3e3; color: #157347; }
+.state.manual_review, .state.unresolved, .state.not_supported { background: #fde8e8; color: #8a1c1c; }
+.state.awaiting_approval { background: #fff3cd; color: #7a5a00; }
+.state.provisional_credit, .state.credit_reversed, .state.issuer_pending, .state.issuer_review { background: #e6e0ff; color: #4b2ea8; }
+.question { background: #eef3ff; padding: 8px; border-radius: 6px; margin: 8px 0; }
+.question button, .actions button { margin: 4px 6px 4px 0; }
+.agent { background: #f2f4f7; padding: 8px; border-radius: 6px; margin-top: 8px; }
+pre { white-space: pre-wrap; background: #f2f4f7; padding: 8px; border-radius: 6px; }
+ul.fixtures { list-style: none; padding: 0; }
+ul.fixtures li { margin: 6px 0; }
+form label { display: block; margin: 4px 0; }

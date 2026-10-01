@@ -1,0 +1,58 @@
+{
+  "fixture_version": "2026.09.1",
+  "note": "Synthetic renter households. Names, addresses and facts are invented for the prototype.",
+  "households": [
+    {
+      "customer_id": "cus_demo_1",
+      "display_name": "Avery Demo",
+      "auth_token": "tok_cus_demo_1",
+      "address": {"line1": "1200 Fixture Ave Apt 4B", "city": "Oakland", "state_code": "CA", "postal_code": "94607"},
+      "building_type": "apartment",
+      "facts": {
+        "owns_dog": false,
+        "animals_in_household": false,
+        "prior_claims_5y": false,
+        "prior_claims_3y": false,
+        "smoke_detectors": true,
+        "home_business": false,
+        "high_value_items_over_1500": true
+      },
+      "scenario": "demo_1_comparable_shopping"
+    },
+    {
+      "customer_id": "cus_demo_2",
+      "display_name": "Jordan Sample",
+      "auth_token": "tok_cus_demo_2",
+      "address": {"line1": "88 Placeholder St Unit 12", "city": "Sacramento", "state_code": "CA", "postal_code": "95814"},
+      "building_type": "apartment",
+      "facts": {
+        "owns_dog": true,
+        "animals_in_household": true,
+        "prior_claims_5y": true,
+        "prior_claims_3y": false,
+        "smoke_detectors": true,
+        "home_business": false,
+        "high_value_items_over_1500": true
+      },
+      "scenario": "demo_3_changed_terms"
+    },
+    {
+      "customer_id": "cus_demo_3",
+      "display_name": "Riley Fixture",
+      "auth_token": "tok_cus_demo_3",
+      "address": {"line1": "402 Example Blvd", "city": "San Diego", "state_code": "CA", "postal_code": "92101"},
+      "building_type": "condo",
+      "facts": {
+        "owns_dog": false,
+        "animals_in_household": true,
+        "prior_claims_5y": false,
+        "prior_claims_3y": false,
+        "smoke_detectors": true,
+        "home_business": true,
+        "high_value_items_over_1500": false
+      },
+      "scenario": "declined_by_restrictive_insurer"
+    }
+  ],
+  "operator": {"user_id": "op_demo_1", "auth_token": "tok_operator"}
+}

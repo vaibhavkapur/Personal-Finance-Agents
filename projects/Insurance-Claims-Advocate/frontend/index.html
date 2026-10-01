@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insurance Claims Advocate (prototype)</title>
+  <link rel="stylesheet" href="/app/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <strong>Claims Advocate</strong>
+      <span class="badge mock" id="env-badge">mock</span>
+      <span class="muted" id="clock-now"></span>
+    </div>
+    <div class="session">
+      <label>Signed in as
+        <select id="token-select">
+          <option value="tok_customer_demo_3">Jordan Rivera (customer)</option>
+          <option value="tok_rep_demo_3">Authorized representative</option>
+          <option value="tok_customer_demo_4">Priya Natarajan (other customer)</option>
+          <option value="tok_operator_demo">Operations reviewer</option>
+        </select>
+      </label>
+      <nav>
+        <button data-view="customer" class="tab active">Customer</button>
+        <button data-view="operator" class="tab">Operator</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <aside id="sidebar">
+      <section class="card">
+        <h2>Cases</h2>
+        <ul id="case-list" class="list"></ul>
+        <details id="new-case">
+          <summary>Open a new case</summary>
+          <form id="create-form">
+            <label>Loss date/time (UTC) <input name="loss_at" value="2026-09-10T14:00:00Z" /></label>
+            <label>Documents to attach
+              <select name="document_ids" multiple size="8" id="doc-select"></select>
+            </label>
+            <label>Simulator path (mock only)
+              <select name="mock_scenario">
+                <option value="">decide from packet content</option>
+                <option value="approved">approved</option>
+                <option value="evidence_requested">evidence requested</option>
+                <option value="partial">partial approval</option>
+                <option value="denied">denied</option>
+              </select>
+            </label>
+            <button type="submit">Open case</button>
+          </form>
+        </details>
+      </section>
+    </aside>
+
+    <section id="customer-view" class="view">
+      <div id="case-empty" class="card muted">Select a case or open a new one. Fixture data only: no real claim is filed.</div>
+      <div id="case-detail" hidden>
+        <div class="card headline">
+          <div>
+            <h1 id="case-title"></h1>
+            <div class="muted" id="case-meta"></div>
+          </div>
+          <div class="status-block">
+            <span class="status" id="case-status"></span>
+            <div class="muted" id="case-waiting"></div>
+          </div>
+        </div>
+        <div class="card next"><strong>Next:</strong> <span id="next-step"></span></div>
+
+        <div class="grid">
+          <section class="card">
+            <h2>Checklist</h2>
+            <ul id="checklist" class="list"></ul>
+            <h3>Required evidence</h3>
+            <ul id="evidence-checklist" class="list"></ul>
+            <form id="attach-form" class="inline">
+              <select id="attach-select" multiple size="4"></select>
+              <button type="submit">Attach selected documents</button>
+            </form>
+          </section>
+
+          <section class="card">
+            <h2>Amounts</h2>
+            <table id="totals-table"></table>
+            <p class="muted small">Estimates apply the approved fixture rule set; the insurer decides the claim.</p>
+          </section>
+        </div>
+
+        <section class="card" id="questions-card">
+          <h2>Questions for you</h2>
+          <div id="questions"></div>
+        </section>
+
+        <section class="card">
+          <h2>Expenses</h2>
+          <table id="expenses-table" class="wide"></table>
+        </section>
+
+        <section class="card" id="action-card" hidden>
+          <h2>Review before anything is sent</h2>
+          <div id="action-review"></div>
+        </section>
+
+        <section class="card">
+          <h2>Actions</h2>
+          <div class="buttons">
+            <button id="btn-evaluate">Re-evaluate</button>
+            <button id="btn-draft">Prepare submission / supplemental packet</button>
+            <button id="btn-appeal">Prepare appeal</button>
+            <button id="btn-accept">Accept decision</button>
+            <button id="btn-reconcile">Reconcile payout</button>
+            <a id="btn-export" target="_blank">Export case history (JSON)</a>
+          </div>
+          <div id="action-msg" class="msg"></div>
+        </section>
+
+        <section class="card">
+          <h2>Advocate</h2>
+          <div id="agent-log" class="log"></div>
+          <form id="agent-form" class="inline">
+            <input id="agent-input" placeholder="My bag arrived two days late. Help me claim the essential purchases…" />
+            <button type="submit">Send</button>
+          </form>
+        </section>
+
+        <section class="card" id="decisions-card">
+          <h2>Insurer decisions</h2>
+          <div id="decisions"></div>
+        </section>
+
+        <section class="card" id="requests-card">
+          <h2>Insurer requests</h2>
+          <ul id="requests" class="list"></ul>
+        </section>
+
+        <section class="card">
+          <h2>Settlement</h2>
+          <div id="settlement"></div>
+        </section>
+
+        <section class="card">
+          <h2>Timeline</h2>
+          <ol id="timeline" class="timeline"></ol>
+        </section>
+      </div>
+    </section>
+
+    <section id="operator-view" class="view" hidden>
+      <div class="grid">
+        <section class="card">
+          <h2>Fixture clock &amp; worker</h2>
+          <div class="buttons">
+            <button data-op="advance" data-hours="1">+1h</button>
+            <button data-op="advance" data-hours="24">+1 day</button>
+            <button data-op="advance" data-hours="360">+15 days</button>
+            <button data-op="worker">Run worker until idle</button>
+          </div>
+          <h3>Mock insurer faults</h3>
+          <div class="buttons">
+            <button data-fault="timeout_after_accept">timeout after accept</button>
+            <button data-fault="timeout_before_accept">timeout before accept</button>
+            <button data-fault="malformed">malformed response</button>
+            <button data-fault="declined">declined</button>
+            <button data-chaos="duplicate_decision">toggle duplicate decision events</button>
+            <button data-chaos="out_of_order">toggle out-of-order events</button>
+          </div>
+          <h3>Mock payout feed</h3>
+          <div class="buttons">
+            <button data-pay="exact">exact</button>
+            <button data-pay="smaller">smaller</button>
+            <button data-pay="remainder">remainder</button>
+            <button data-pay="provisional">provisional</button>
+            <button data-pay="unrelated">unrelated claim</button>
+            <button data-pay="wrong_payee">wrong payee</button>
+          </div>
+          <div id="op-msg" class="msg"></div>
+        </section>
+        <section class="card">
+          <h2>Metrics</h2>
+          <table id="metrics-table"></table>
+          <h3>Adapter</h3>
+          <pre id="capabilities" class="small"></pre>
+        </section>
+      </div>
+      <section class="card"><h2>Pending actions &amp; approvals</h2><table id="op-actions" class="wide"></table></section>
+      <section class="card"><h2>Adapter requests (redacted)</h2><table id="op-adapter" class="wide"></table></section>
+      <section class="card"><h2>State transitions</h2><table id="op-transitions" class="wide"></table></section>
+      <section class="card"><h2>Tool runs</h2><table id="op-tools" class="wide"></table></section>
+      <section class="card"><h2>Jobs</h2><table id="op-jobs" class="wide"></table></section>
+      <section class="card"><h2>Provider event inbox</h2><table id="op-inbox" class="wide"></table></section>
+      <section class="card"><h2>Mock insurer state</h2><pre id="op-mock" class="small"></pre></section>
+    </section>
+  </main>
+  <script src="/app/app.js"></script>
+</body>
+</html>

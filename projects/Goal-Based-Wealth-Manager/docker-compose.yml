@@ -1,0 +1,17 @@
+services:
+  wealth-manager:
+    build: .
+    ports:
+      - "127.0.0.1:8017:8017"
+    volumes:
+      - wealth-data:/app/var
+    environment:
+      MOCK_WEBHOOK_SECRET: ${MOCK_WEBHOOK_SECRET:-local-demo-webhook-secret}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8017/health')"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+volumes:
+  wealth-data:

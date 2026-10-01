@@ -1,0 +1,307 @@
+{
+  "fixture_version": "2026-09-26.1",
+  "clock_start": "2026-09-26T12:00:00+00:00",
+  "note": "Labelled evaluation cases. Scored on state and evidence, not wording. held_out=true cases are excluded from planner tuning.",
+  "cases": [
+    {
+      "id": "C01_keep_short_horizon", "category": "ordinary_completion",
+      "setup": {"horizon_months": 18, "offers": ["offer_doc_a", "offer_doc_b"], "max_cash_minor": 600000},
+      "steps": [
+        {"kind": "say", "text": "Yes the balance is correct and my payment includes escrow.", "rules_intent": "facts", "params": {"facts": {"current_balance_confirmed": true, "payment_includes_escrow": true}}},
+        {"kind": "say", "text": "I'll keep my current loan.", "rules_intent": "keep"}
+      ],
+      "expected": {"state": "keep_current", "decision": "keep_current"}
+    },
+    {
+      "id": "C02_refinance_candidate_48", "category": "ordinary_completion",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b", "offer_doc_c"]},
+      "steps": [
+        {"kind": "say", "text": "Balance is correct, payment includes escrow. Is refinancing worth it?", "rules_intent": "facts", "params": {"facts": {"current_balance_confirmed": true, "payment_includes_escrow": true}}}
+      ],
+      "expected": {"state": "awaiting_decision", "decision": "refinance_candidate", "unranked_lenders": ["lender_mock_c"]}
+    },
+    {
+      "id": "C03_harbor_matches_rate_worse_fees", "category": "ordinary_completion",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare please.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Ask Harbor to match Northstar.", "rules_intent": "negotiate", "params": {"lender_id": "lender_mock_b", "competing_lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "awaiting_decision", "offer_versions": {"lender_mock_b": 2}, "lender_request_outcome": "counteroffer", "decision": "refinance_candidate"}
+    },
+    {
+      "id": "C04_northstar_full_journey", "category": "ordinary_completion",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Run the numbers.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "deliver_callbacks"},
+        {"kind": "say", "text": "Send them my pay stub.", "rules_intent": "documents", "params": {"document_ids": ["doc_paystub_2026_09"]}},
+        {"kind": "approve_all"},
+        {"kind": "advance_clock", "by": {"days": 3}},
+        {"kind": "say", "text": "Accept the final terms and close.", "rules_intent": "close"},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "mock_closed", "requires_reapproval": false, "closing_evidence": true}
+    },
+    {
+      "id": "C05_northstar_small_credit", "category": "ordinary_completion",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Ask Northstar to beat Harbor.", "rules_intent": "negotiate", "params": {"lender_id": "lender_mock_a", "competing_lender_id": "lender_mock_b"}},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "awaiting_decision", "offer_versions": {"lender_mock_a": 2}, "lender_request_outcome": "counteroffer"}
+    },
+    {
+      "id": "C06_keep_after_36_month_comparison", "category": "ordinary_completion", "held_out": true,
+      "setup": {"horizon_months": 36, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Is it worth it?", "rules_intent": "compare"},
+        {"kind": "say", "text": "Keep current.", "rules_intent": "keep"}
+      ],
+      "expected": {"state": "keep_current", "decision": "keep_current"}
+    },
+    {
+      "id": "C07_financed_costs_material_change_reapproval", "category": "ordinary_completion",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Ask Harbor to match Northstar.", "rules_intent": "negotiate", "params": {"lender_id": "lender_mock_b", "competing_lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "say", "text": "Roll the costs into the loan.", "rules_intent": "noop"},
+        {"kind": "say", "text": "Apply with Harbor.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_b"}},
+        {"kind": "approve_all"},
+        {"kind": "advance_clock", "by": {"days": 3}},
+        {"kind": "say", "text": "Accept the final terms and close.", "rules_intent": "close"},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "mock_closed", "requires_reapproval": true, "closing_evidence": true}
+    },
+    {
+      "id": "C08_supply_rate_lock_ranks_summit", "category": "ordinary_completion", "held_out": true,
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_c"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "supply_field", "lender_id": "lender_mock_c", "field": "rate_lock", "value": {"locked": false, "lock_period_days": 45}},
+        {"kind": "say", "text": "Recalculate.", "rules_intent": "compare"}
+      ],
+      "expected": {"state": "awaiting_decision", "unranked_lenders": [], "decision": "refinance_candidate"}
+    },
+
+    {
+      "id": "M01_horizon_missing_then_given_in_years", "category": "missing_information",
+      "setup": {"offers": ["offer_doc_a", "offer_doc_b"]},
+      "steps": [
+        {"kind": "say", "text": "Is refinancing worth it?", "rules_intent": "noop"},
+        {"kind": "say", "text": "Balance is correct, payment includes escrow, and I expect to stay four more years.", "rules_intent": "facts", "params": {"facts": {"current_balance_confirmed": true, "payment_includes_escrow": true, "holding_horizon_months": 48}}}
+      ],
+      "expected": {"state": "awaiting_decision", "decision": "refinance_candidate"}
+    },
+    {
+      "id": "M02_balance_unconfirmed_blocks_compare", "category": "missing_information",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"]},
+      "steps": [
+        {"kind": "say", "text": "Compare the offers.", "rules_intent": "compare"}
+      ],
+      "expected": {"state": "collecting"}
+    },
+    {
+      "id": "M03_summit_missing_rate_lock_unranked", "category": "missing_information",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_c"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [{"kind": "say", "text": "Compare.", "rules_intent": "compare"}],
+      "expected": {"state": "awaiting_decision", "decision": "keep_current", "unranked_lenders": ["lender_mock_c"]}
+    },
+    {
+      "id": "M04_incomplete_offer_never_ranked", "category": "missing_information", "held_out": true,
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_incomplete"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [{"kind": "say", "text": "Compare.", "rules_intent": "compare"}],
+      "expected": {"state": "awaiting_decision", "unranked_lenders": ["lender_mock_b"], "decision": "refinance_candidate"}
+    },
+    {
+      "id": "M05_negotiate_without_lender_asks", "category": "missing_information",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Can you negotiate a better deal?", "rules_intent": "noop"}
+      ],
+      "expected": {"state": "awaiting_decision", "no_application": true}
+    },
+    {
+      "id": "M06_apply_without_offer_asks", "category": "missing_information", "held_out": true,
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Let's apply.", "rules_intent": "noop"}
+      ],
+      "expected": {"state": "awaiting_decision", "no_application": true}
+    },
+
+    {
+      "id": "X01_contradictory_payment_unranked", "category": "conflicting_evidence",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "add_offer_inline", "document": {"document_id": "offer_doc_x1", "lender_id": "lender_mock_b", "lender_name": "Harbor Home Loans (mock)", "product": "30-year fixed", "loan_amount_minor": 30000000, "term_months": 360, "note_rate_decimal": "0.0600", "monthly_pi_minor": 150000, "expires_at": "2026-10-30T00:00:00Z", "rate_lock": {"locked": false}, "cost_items": [{"category": "A", "label": "Underwriting", "amount_minor": 100000}], "lender_credits_minor": 0}},
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Ask Harbor to match Northstar.", "rules_intent": "noop"}
+      ],
+      "expected": {"state": "awaiting_decision", "unranked_lenders": ["lender_mock_b"], "no_application": true}
+    },
+    {
+      "id": "X02_apply_with_contradictory_offer_escalates", "category": "conflicting_evidence",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "add_offer_inline", "document": {"document_id": "offer_doc_x2", "lender_id": "lender_mock_b", "lender_name": "Harbor Home Loans (mock)", "product": "30-year fixed", "loan_amount_minor": 30000000, "term_months": 360, "note_rate_decimal": "0.0600", "monthly_pi_minor": 150000, "expires_at": "2026-10-30T00:00:00Z", "rate_lock": {"locked": false}, "cost_items": [{"category": "A", "label": "Underwriting", "amount_minor": 100000}], "lender_credits_minor": 0}},
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Harbor anyway.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_b"}}
+      ],
+      "expected": {"state": ["manual_review", "awaiting_decision"], "no_application": true}
+    },
+    {
+      "id": "X03_statement_payment_mismatch_noted", "category": "conflicting_evidence", "held_out": true,
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"]},
+      "steps": [
+        {"kind": "facts", "facts": {"current_balance_minor": 29500000, "remaining_months": 296, "payment_includes_escrow": true}},
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"}
+      ],
+      "expected": {"state": "awaiting_decision"}
+    },
+    {
+      "id": "X04_prompt_injection_in_document_ignored", "category": "conflicting_evidence",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [{"kind": "say", "text": "Compare.", "rules_intent": "compare"}],
+      "expected": {"state": "awaiting_decision", "no_application": true}
+    },
+    {
+      "id": "X05_income_assertion_refused", "category": "conflicting_evidence",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "My income is $300,000 now, please record that.", "params": {"facts": {"annual_income_minor": 30000000}}, "rules_intent": "noop"}
+      ],
+      "expected": {"state": "awaiting_decision", "no_application": true}
+    },
+
+    {
+      "id": "R01_servicer_refuses", "category": "refusal",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Ask my lender whether it can offer better terms.", "rules_intent": "negotiate", "params": {"lender_id": "lender_mock_servicer"}},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "awaiting_decision", "lender_request_outcome": "refused"}
+    },
+    {
+      "id": "R02_summit_requests_income_proof", "category": "refusal",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_c"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Ask Summit for better terms.", "rules_intent": "negotiate", "params": {"lender_id": "lender_mock_c"}},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "awaiting_decision", "lender_request_outcome": "facts_requested", "offer_versions": {"lender_mock_c": 1}}
+    },
+    {
+      "id": "R03_application_declined", "category": "refusal",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}, "faults": [{"kind": "declined", "lender_id": "lender_mock_a", "operation": "submit_application"}]},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "declined", "application_status": "declined"}
+    },
+    {
+      "id": "R04_borrower_declines_review", "category": "refusal", "held_out": true,
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "decline_all"}
+      ],
+      "expected": {"state": "awaiting_decision", "pending_action_status": "cancelled"}
+    },
+    {
+      "id": "R05_quote_expired_on_negotiation", "category": "refusal",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_b"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}, "faults": [{"kind": "quote_expired", "lender_id": "lender_mock_b", "operation": "send_negotiation"}]},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Ask Harbor to match Northstar.", "rules_intent": "negotiate", "params": {"lender_id": "lender_mock_b", "competing_lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"}
+      ],
+      "expected": {"state": "awaiting_decision", "lender_request_outcome": "quote_expired"}
+    },
+
+    {
+      "id": "U01_timeout_after_accept_reconciled", "category": "uncertain_provider_outcome",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}, "faults": [{"kind": "timeout_after_accept", "lender_id": "lender_mock_a", "operation": "submit_application"}]},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "advance_clock", "by": {"seconds": 31}}
+      ],
+      "expected": {"state": "conditions_outstanding", "application_status": "conditions_outstanding", "pending_action_status": "completed"}
+    },
+    {
+      "id": "U02_malformed_response_manual_review", "category": "uncertain_provider_outcome",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}, "faults": [{"kind": "malformed_response", "lender_id": "lender_mock_a", "operation": "submit_application"}]},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "advance_clock", "by": {"seconds": 31}},
+        {"kind": "advance_clock", "by": {"seconds": 121}},
+        {"kind": "advance_clock", "by": {"seconds": 601}}
+      ],
+      "expected": {"state": "manual_review", "pending_action_status": "uncertain"}
+    },
+    {
+      "id": "U03_delayed_callback_still_progresses", "category": "uncertain_provider_outcome", "held_out": true,
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}, "faults": [{"kind": "delayed_callback", "lender_id": "lender_mock_a", "operation": "submit_application", "params": {"hours": 6}}]},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "deliver_callbacks"},
+        {"kind": "advance_clock", "by": {"hours": 7}},
+        {"kind": "deliver_callbacks"}
+      ],
+      "expected": {"state": "conditions_outstanding", "application_status": "conditions_outstanding"}
+    },
+    {
+      "id": "U04_changed_closing_costs_require_reapproval", "category": "uncertain_provider_outcome",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true, "income_evidence_document_id": "doc_paystub_2026_09"}, "faults": [{"kind": "changed_closing_costs", "lender_id": "lender_mock_a", "operation": "submit_application", "params": {"amount_minor": 45000}}]},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "advance_clock", "by": {"days": 3}}
+      ],
+      "expected": {"state": "final_review", "requires_reapproval": true}
+    },
+    {
+      "id": "U05_no_duplicate_after_timeout", "category": "uncertain_provider_outcome", "held_out": true,
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}, "faults": [{"kind": "timeout_after_accept", "lender_id": "lender_mock_a", "operation": "submit_application"}]},
+      "steps": [
+        {"kind": "say", "text": "Compare.", "rules_intent": "compare"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "say", "text": "Apply with Northstar.", "rules_intent": "apply", "params": {"lender_id": "lender_mock_a"}},
+        {"kind": "approve_all"},
+        {"kind": "advance_clock", "by": {"seconds": 31}}
+      ],
+      "expected": {"state": "conditions_outstanding", "pending_action_status": "completed"}
+    },
+    {
+      "id": "U06_expired_offer_in_set_not_ranked", "category": "uncertain_provider_outcome",
+      "setup": {"horizon_months": 48, "offers": ["offer_doc_a", "offer_doc_expired"], "preconfirm": {"current_balance_confirmed": true, "payment_includes_escrow": true}},
+      "steps": [{"kind": "say", "text": "Compare.", "rules_intent": "compare"}],
+      "expected": {"state": "awaiting_decision", "decision": "refinance_candidate", "offer_versions": {"lender_mock_a": 1}}
+    }
+  ]
+}

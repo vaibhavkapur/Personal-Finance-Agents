@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS cases (id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, version INTEGER NOT NULL, state TEXT NOT NULL, data TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, expires_at DOUBLE PRECISION NOT NULL);
+CREATE TABLE IF NOT EXISTS case_events (id TEXT PRIMARY KEY, case_id TEXT NOT NULL REFERENCES cases(id), sequence INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(case_id, sequence));
+CREATE TABLE IF NOT EXISTS actions (id TEXT PRIMARY KEY, case_id TEXT NOT NULL REFERENCES cases(id), tenant_id TEXT NOT NULL, request_ref TEXT NOT NULL UNIQUE, payload_hash TEXT NOT NULL, status TEXT NOT NULL, data TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY, action_id TEXT NOT NULL UNIQUE REFERENCES actions(id), status TEXT NOT NULL, lease_until DOUBLE PRECISION NOT NULL DEFAULT 0, attempts INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS event_inbox (id TEXT PRIMARY KEY, payload_hash TEXT NOT NULL, data TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS outbox (id TEXT PRIMARY KEY, case_id TEXT NOT NULL, delivered INTEGER NOT NULL DEFAULT 0, data TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS event_deliveries (event_id TEXT PRIMARY KEY, case_id TEXT NOT NULL, event_hash TEXT NOT NULL, delivered_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS provider_submissions (request_ref TEXT PRIMARY KEY, submission_ref TEXT NOT NULL UNIQUE, data TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS account_credits (reference TEXT PRIMARY KEY, case_id TEXT NOT NULL REFERENCES cases(id), amount_minor INTEGER NOT NULL);
+CREATE INDEX IF NOT EXISTS cases_tenant ON cases(tenant_id);
+CREATE INDEX IF NOT EXISTS actions_case ON actions(case_id);
+CREATE INDEX IF NOT EXISTS jobs_pending ON jobs(status, lease_until);

@@ -1,0 +1,550 @@
+{
+  "fixture_version": "2026-09-26.1",
+  "engine": "rules-1",
+  "model_comparison": "Not run; no LLM provider is configured. Baseline is the direct deterministic workflow.",
+  "total": 30,
+  "passed": 30,
+  "held_out": 6,
+  "results": [
+    {
+      "id": "ordinary-01",
+      "split": "development",
+      "scenario": "ordinary",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "ordinary-02",
+      "split": "development",
+      "scenario": "ordinary",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "ordinary-03",
+      "split": "development",
+      "scenario": "ordinary",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "ordinary-04",
+      "split": "development",
+      "scenario": "ordinary",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "ordinary-05",
+      "split": "development",
+      "scenario": "ordinary",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "ordinary-06",
+      "split": "held_out",
+      "scenario": "ordinary",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "late-01",
+      "split": "development",
+      "scenario": "late",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "late-02",
+      "split": "development",
+      "scenario": "late",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "late-03",
+      "split": "development",
+      "scenario": "late",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "late-04",
+      "split": "development",
+      "scenario": "late",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "late-05",
+      "split": "development",
+      "scenario": "late",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "late-06",
+      "split": "held_out",
+      "scenario": "late",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "missing-01",
+      "split": "development",
+      "scenario": "missing",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "missing-02",
+      "split": "development",
+      "scenario": "missing",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "missing-03",
+      "split": "development",
+      "scenario": "missing",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "missing-04",
+      "split": "development",
+      "scenario": "missing",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "missing-05",
+      "split": "held_out",
+      "scenario": "missing",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "refusal-01",
+      "split": "development",
+      "scenario": "refusal",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 0,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "refusal-02",
+      "split": "development",
+      "scenario": "refusal",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 0,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "refusal-03",
+      "split": "development",
+      "scenario": "refusal",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 0,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "refusal-04",
+      "split": "development",
+      "scenario": "refusal",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 0,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "refusal-05",
+      "split": "held_out",
+      "scenario": "refusal",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 0,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "unknown-01",
+      "split": "development",
+      "scenario": "unknown",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "unknown-02",
+      "split": "development",
+      "scenario": "unknown",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "unknown-03",
+      "split": "development",
+      "scenario": "unknown",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "unknown-04",
+      "split": "held_out",
+      "scenario": "unknown",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "conflict-01",
+      "split": "development",
+      "scenario": "conflict",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "conflict-02",
+      "split": "development",
+      "scenario": "conflict",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "conflict-03",
+      "split": "development",
+      "scenario": "conflict",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    },
+    {
+      "id": "conflict-04",
+      "split": "held_out",
+      "scenario": "conflict",
+      "passed": true,
+      "checks": {
+        "expected_intent": true,
+        "no_self_approval": true,
+        "tool_budget": true,
+        "cash_conserved": true,
+        "expected_supported_payout": true,
+        "baseline_agrees": true,
+        "unknown_keeps_reservation": true,
+        "unexpected_question": true
+      },
+      "tool_calls": 2,
+      "model_cost_usd": "0.00"
+    }
+  ]
+}

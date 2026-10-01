@@ -1,0 +1,22 @@
+{
+  "document_id": "offer_doc_incomplete",
+  "owner_customer_id": "cus_demo_5",
+  "kind": "loan_estimate",
+  "source": "fixture",
+  "captured_at": "2026-09-23T00:00:00Z",
+  "extraction_version": "fixture-1",
+  "lender_id": "lender_mock_b",
+  "lender_name": "Harbor Home Loans (mock)",
+  "product": "30-year fixed (conventional refinance)",
+  "loan_amount_minor": 30000000,
+  "term_months": 360,
+  "issued_at": "2026-09-23T00:00:00Z",
+  "expires_at": "2026-10-20T23:59:00Z",
+  "status": "indicative_quote",
+  "cost_items": [
+    { "category": "A", "label": "Underwriting fee", "amount_minor": 110000, "source": { "page": 2, "section": "A" } },
+    { "category": "C", "label": "Title", "amount_minor": 105000, "source": { "page": 2, "section": "C" } }
+  ],
+  "lender_credits_minor": 0,
+  "fixture_note": "Interest rate and rate lock are missing; the offer must not be ranked."
+}

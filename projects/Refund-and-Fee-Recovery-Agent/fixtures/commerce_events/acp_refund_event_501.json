@@ -1,0 +1,15 @@
+{
+  "schema": "acp.webhook.v1-fixture",
+  "_note": "Fixture shaped after an ACP order webhook. Evidence only: it records the merchant's claim that a refund was created and its reference; it does not move money or grant execution authority.",
+  "id": "acp_evt_fixture_501",
+  "type": "order.refunded",
+  "created_at": "2026-09-04T16:00:00Z",
+  "data": {
+    "order_id": "order_mock_501",
+    "merchant_id": "mrc_mock_streaming",
+    "currency": "USD",
+    "refunds": [
+      {"id": "rf_501", "amount_minor": 5900, "currency": "USD", "status": "succeeded", "destination": "original_payment"}
+    ]
+  }
+}

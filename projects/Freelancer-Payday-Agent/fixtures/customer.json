@@ -1,0 +1,19 @@
+{
+  "fixture_version": "2026-09-26.1",
+  "customer_id": "cus_demo_12",
+  "name": "Alex Morgan",
+  "business_name": "Morgan Design Studio",
+  "clock": "2026-10-01T09:00:00+00:00",
+  "available_minor": 1000000,
+  "currency": "USD",
+  "receipts": [
+    {"id":"rcpt_northstar","provider_transaction_id":"txn_northstar","client":"Northstar Studio","description":"Brand identity · INV-041","amount_minor":520000,"category":"income","confirmed":true,"posted_at":"2026-09-24","evidence_id":"fixture:txn_northstar"},
+    {"id":"rcpt_acme","provider_transaction_id":"txn_acme","client":"Acme & Co.","description":"Product design · INV-042","amount_minor":280000,"category":"income","confirmed":true,"posted_at":"2026-09-27","evidence_id":"fixture:txn_acme"},
+    {"id":"rcpt_refunded","provider_transaction_id":"txn_refunded","client":"Fieldwork","description":"Cancelled project deposit","amount_minor":120000,"category":"income","confirmed":true,"posted_at":"2026-09-20","evidence_id":"fixture:txn_refunded"},
+    {"id":"rcpt_refund","provider_transaction_id":"txn_refund","client":"Fieldwork","description":"Deposit returned to client","amount_minor":-120000,"category":"refund","confirmed":true,"reverses_receipt_id":"rcpt_refunded","posted_at":"2026-09-22","evidence_id":"fixture:txn_refund"},
+    {"id":"rcpt_own","provider_transaction_id":"txn_own","client":"Alex Morgan","description":"Own-account transfer","amount_minor":200000,"category":"transfer","confirmed":true,"posted_at":"2026-09-18","evidence_id":"fixture:txn_own"}
+  ],
+  "invoices":[{"id":"inv_043","client":"Orbit Labs","amount_minor":500000,"due_date":"2026-09-30","status":"overdue","paid_transaction_id":null,"description":"Website redesign · INV-043"}],
+  "bills":[{"id":"bill_workspace","name":"Studio & workspace","amount_minor":120000,"due_date":"2026-10-05","confirmed":true},{"id":"bill_software","name":"Software & subscriptions","amount_minor":35000,"due_date":"2026-10-10","confirmed":true},{"id":"bill_contractors","name":"Contractor commitment","amount_minor":45000,"due_date":"2026-10-15","confirmed":true}],
+  "policy":{"id":"reserve_policy_demo_1","version":1,"provisional_tax_fraction_decimal":"0.2500","emergency_floor_minor":200000,"planning_horizon_days":30,"approved_at":"2026-09-26T12:00:00+00:00","approved_by":"fixture:alex","currency":"USD"}
+}

@@ -1,0 +1,151 @@
+{
+  "id": "estate_c6a5da45a8d17368",
+  "tenant": "demo",
+  "owner_user_id": "alex_demo",
+  "customer_id": "cus_demo_11",
+  "decedent_record_id": "syn_evelyn_morgan",
+  "decedent": "Evelyn Morgan",
+  "representative": "Alex Morgan",
+  "claimed_role": "personal_representative",
+  "jurisdiction_profile": "US_CA_MOCK",
+  "status": "collecting",
+  "version": 1,
+  "created_at": "2026-09-25T10:00:00+00:00",
+  "access_policy_version": 1,
+  "documents": [
+    {
+      "id": "doc_e79481ac16ab595b",
+      "name": "Harbor \u00b7 March statement",
+      "kind": "bank_statement",
+      "content": "SYNTHETIC RECORD\nInstitution: harbor\nReference: SYN-HNB-8821\nOwner ID: syn_evelyn_morgan\nOwner: Evelyn Morgan\nBalance minor: 4286500\nCurrency: USD\nDate: 2025-03-31",
+      "hash": "sha256:0532fc11ac44cf20244c07a77013ff5784d23bbb5318b464ecd8902f42ee1898",
+      "version": 1,
+      "source": "synthetic_fixture",
+      "captured_at": "2026-09-25T10:00:00+00:00",
+      "extraction_version": "fixture-text-v1"
+    },
+    {
+      "id": "doc_fbe629af6ee41bc7",
+      "name": "Harbor \u00b7 June statement",
+      "kind": "bank_statement",
+      "content": "SYNTHETIC RECORD\nInstitution: harbor\nReference: SYN-HNB-8821\nOwner ID: syn_evelyn_morgan\nOwner: Evelyn Morgan\nBalance minor: 4286500\nCurrency: USD\nDate: 2025-06-30",
+      "hash": "sha256:4ae364ba457c383c23d89141cc763833562e801fff32005b4791141db5bd94ab",
+      "version": 1,
+      "source": "synthetic_fixture",
+      "captured_at": "2026-09-25T10:00:00+00:00",
+      "extraction_version": "fixture-text-v1"
+    },
+    {
+      "id": "doc_75c75429627ad9ab",
+      "name": "Cedar Life \u00b7 Policy record",
+      "kind": "insurance_policy",
+      "content": "SYNTHETIC RECORD\nInstitution: cedar\nReference: SYN-CLA-4107\nOwner ID: syn_evelyn_morgan\nOwner: Evelyn Morgan\nBeneficiary: Jordan Morgan\nBalance minor: 15000000\nCurrency: USD\nDate: 2025-04-15",
+      "hash": "sha256:b14a24663a34c4e2e9c1e68aa7e1d01f355bd699ad77f5fda9d2ce9568cba362",
+      "version": 1,
+      "source": "synthetic_fixture",
+      "captured_at": "2026-09-25T10:00:00+00:00",
+      "extraction_version": "fixture-text-v1"
+    },
+    {
+      "id": "doc_0f771308320f51ac",
+      "name": "Summit \u00b7 Annual statement",
+      "kind": "retirement_statement",
+      "content": "SYNTHETIC RECORD\nInstitution: summit\nReference: SYN-SRT-6024\nOwner ID: syn_evelyn_morgan\nOwner: Evelyn Morgan\nBalance minor: 8674025\nCurrency: USD\nDate: 2025-12-31",
+      "hash": "sha256:a5aaa38fa5f0107bc281a58dd34e633b86ba1cd971bd062ed625719d6a003813",
+      "version": 1,
+      "source": "synthetic_fixture",
+      "captured_at": "2026-09-25T10:00:00+00:00",
+      "extraction_version": "fixture-text-v1"
+    },
+    {
+      "id": "doc_570afc6599b0f8a1",
+      "name": "Harbor \u00b7 Similar-name record",
+      "kind": "bank_statement",
+      "content": "SYNTHETIC RECORD\nInstitution: harbor\nReference: SYN-OTHER-8821\nOwner ID: syn_evelyn_r_morgan\nOwner: Evelyn R. Morgan\nBalance minor: 920000\nCurrency: USD\nDate: 2025-02-01",
+      "hash": "sha256:9020fef9b70816e59c5d8d18729333356175c72872725f1fefa666537805eb09",
+      "version": 1,
+      "source": "synthetic_fixture",
+      "captured_at": "2026-09-25T10:00:00+00:00",
+      "extraction_version": "fixture-text-v1"
+    },
+    {
+      "id": "doc_663bf648990c28c1",
+      "name": "Evelyn Morgan \u00b7 Death certificate",
+      "kind": "death_certificate",
+      "content": "SYNTHETIC RECORD\nSubject: syn_evelyn_morgan\nMock certificate of death. No legal effect.",
+      "hash": "sha256:cfe60ce49de42f363728542c97b6ef33da65c1b530f3fa5490eac5161981b3d7",
+      "version": 1,
+      "source": "synthetic_fixture",
+      "captured_at": "2026-09-25T10:00:00+00:00",
+      "extraction_version": "fixture-text-v1"
+    },
+    {
+      "id": "doc_7ab81eca03bff772",
+      "name": "Alex Morgan \u00b7 Letters of authority",
+      "kind": "letters_of_authority",
+      "content": "SYNTHETIC RECORD\nSubject: syn_evelyn_morgan\nRepresentative: alex_demo\nRole: personal_representative\nExpires: 2027-09-25\nMock authority evidence. Institution review required.",
+      "hash": "sha256:ae66b05cb0b047d39df38f0c02b16dd2ca64cd394ff36f5cf05dab3eea1f0f3f",
+      "version": 1,
+      "source": "synthetic_fixture",
+      "captured_at": "2026-09-25T10:00:00+00:00",
+      "extraction_version": "fixture-text-v1"
+    }
+  ],
+  "assets": [],
+  "duplicates": [],
+  "authorities": {},
+  "actions": [],
+  "approvals": [],
+  "events": [],
+  "tool_runs": [],
+  "requirements": {
+    "harbor": {
+      "id": "harbor",
+      "name": "Harbor National Bank",
+      "short_name": "Harbor",
+      "product": "bank",
+      "recipient": "mock://harbor/estate-services",
+      "version": 1,
+      "effective_at": "2026-09-01",
+      "required": [
+        "death_certificate",
+        "letters_of_authority",
+        "bank_statement"
+      ],
+      "amount_minor": 4286500
+    },
+    "cedar": {
+      "id": "cedar",
+      "name": "Cedar Life Assurance",
+      "short_name": "Cedar Life",
+      "product": "insurance",
+      "recipient": "mock://cedar/beneficiary-services",
+      "version": 1,
+      "effective_at": "2026-09-01",
+      "required": [
+        "death_certificate",
+        "letters_of_authority",
+        "insurance_policy"
+      ],
+      "amount_minor": 15000000
+    },
+    "summit": {
+      "id": "summit",
+      "name": "Summit Retirement",
+      "short_name": "Summit",
+      "product": "retirement",
+      "recipient": "mock://summit/estate-claims",
+      "version": 1,
+      "effective_at": "2026-09-01",
+      "required": [
+        "death_certificate",
+        "letters_of_authority",
+        "retirement_statement",
+        "retirement_claim_form"
+      ],
+      "amount_minor": 8674025
+    }
+  },
+  "inventory_scope": "Only supplied records have been reviewed. Other assets may exist. Closing known claims does not settle the estate.",
+  "environment": "mock"
+}

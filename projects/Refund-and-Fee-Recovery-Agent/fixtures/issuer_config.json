@@ -1,0 +1,13 @@
+{
+  "version": "issuer-config-v1",
+  "_note": "FIXTURE VALUES. These windows are placeholders for a simulated issuer and are not legal or network rules. Verify applicable deadlines from current issuer and regulatory sources for any real case.",
+  "issuers": {
+    "issuer_mock": {
+      "display_name": "Mock Issuer",
+      "case_types": {
+        "promised_refund_missing": {"window_days": 60, "window_starts_from": "purchase_posted", "alert_days_before": 14, "source": "fixture:issuer_mock_terms_v1"},
+        "duplicate_billing": {"window_days": 60, "window_starts_from": "purchase_posted", "alert_days_before": 14, "source": "fixture:issuer_mock_terms_v1"}
+      }
+    }
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "fixture_version": "fixture-v1",
+  "note": "Labeled agent evaluation cases (plan §19). Each case runs against a freshly seeded database. 'heldout' cases are excluded from policy tuning. Evaluation checks state and evidence, not wording, except where a specific evidence citation is required.",
+  "story": "My $10,000 CD matures next week. Keep $3,000 available for my upcoming expenses and compare what I can do with the rest.",
+  "cases": [
+    {
+      "id": "eval_001", "category": "ordinary_completion", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "expected_action_type": "cd_renewal"},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information", "questions": ["preferred_lockup_days", "buffer_includes_obligations"]}},
+        {"type": "turn", "message": "Yes, the $3,000 includes the rent. I can lock money up for a year.", "expect": {"state": "evaluating", "questions": ["option_choice"]}},
+        {"type": "turn", "message": "Renew into the 12-month CD.", "expect": {"state": "awaiting_approval", "tools_include": ["prepare_bank_instruction"]}},
+        {"type": "approve"}, {"type": "worker"},
+        {"type": "turn", "message": "What's the status?", "expect": {"state": "submitted", "reply_contains": ["bankref_"]}},
+        {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Is it done?", "expect": {"state": "completed", "reply_contains": ["provider_reference:bankref_"]}}
+      ]
+    },
+    {
+      "id": "eval_002", "category": "ordinary_completion", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "expected_action_type": "same_owner_transfer"},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "The reserve already includes the rent. Keep it liquid please.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Move the rest to my Northwind savings.", "expect": {"state": "awaiting_approval", "tools_include": ["prepare_bank_instruction"]}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status?", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_003", "category": "ordinary_completion", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "expected_action_type": "cd_renewal"},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes it includes rent. Six months max.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "The 6-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Done?", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_004", "category": "ordinary_completion", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["option_choice"], "expected_action_type": "cd_renewal"},
+      "steps": [
+        {"type": "turn", "message": "My CD matures soon. Keep $3,000 available, and yes that already includes the rent. I can lock the rest for a year.", "expect": {"state": "evaluating", "questions": ["option_choice"], "tools_exclude": ["prepare_bank_instruction"]}},
+        {"type": "turn", "message": "Option 1.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_005", "category": "ordinary_completion", "split": "heldout",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "expected_amount_minor": 500000},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; one year is fine.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Put $5,000 in the 12-month CD and leave the rest in checking.", "expect": {"state": "awaiting_approval", "action_amount_minor": 500000}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_006", "category": "ordinary_completion", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["option_choice"], "expected_action_type": "same_owner_transfer"},
+      "steps": [
+        {"type": "turn", "message": "Keep $1,000 available on top of my rent when the CD matures. Lock-up of up to 12 months is fine.", "expect": {"state": "evaluating", "tools_exclude": ["prepare_bank_instruction"]}},
+        {"type": "turn", "message": "The high-yield savings transfer.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_007", "category": "ordinary_completion", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes the rent. A year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "delayed_callback"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_008", "category": "ordinary_completion", "split": "heldout",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes the rent. A year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "malformed_response"}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "submitted"}},
+        {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    },
+
+    {
+      "id": "eval_009", "category": "missing_information", "split": "dev",
+      "labels": {"expected_final_state": null, "allowed_questions": ["minimum_buffer_minor"]},
+      "steps": [
+        {"type": "turn", "message": "My CD is maturing, what should I do with it?", "expect": {"no_case": true, "questions": ["minimum_buffer_minor"]}}
+      ]
+    },
+    {
+      "id": "eval_010", "category": "missing_information", "split": "dev",
+      "labels": {"expected_final_state": "needs_information", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information", "questions": ["preferred_lockup_days", "buffer_includes_obligations"], "reply_contains": ["still-locked CD cannot fund it"]}}
+      ]
+    },
+    {
+      "id": "eval_011", "category": "missing_information", "split": "dev",
+      "labels": {"expected_final_state": "needs_information", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "I can lock it up for a year.", "expect": {"state": "needs_information", "questions": ["buffer_includes_obligations"]}}
+      ]
+    },
+    {
+      "id": "eval_012", "category": "missing_information", "split": "heldout",
+      "labels": {"expected_final_state": "needs_information", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes, that includes the rent.", "expect": {"state": "needs_information", "questions": ["preferred_lockup_days"]}}
+      ]
+    },
+    {
+      "id": "eval_013", "category": "missing_information", "split": "dev",
+      "labels": {"expected_final_state": "awaiting_approval", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "expected_action_type": "same_owner_transfer"},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "No, the rent is separate. Keep it liquid.", "expect": {"state": "evaluating", "reply_contains": ["exceeds preferred lock-up"]}},
+        {"type": "turn", "message": "Savings transfer then.", "expect": {"state": "awaiting_approval", "action_amount_minor": 500000}}
+      ]
+    },
+    {
+      "id": "eval_014", "category": "missing_information", "split": "heldout",
+      "labels": {"expected_final_state": "needs_information", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Just put it in the 12-month CD.", "expect": {"state": "needs_information", "tools_exclude": ["prepare_bank_instruction"]}}
+      ]
+    },
+
+    {
+      "id": "eval_015", "category": "conflicting_evidence", "split": "dev",
+      "labels": {"expected_final_state": "evaluating", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice", "re-evaluate"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "offer_mode", "mode": "changed_rate"}, {"type": "worker"},
+        {"type": "turn", "message": "Status?", "expect": {"state": "needs_requote", "reply_contains": ["terms changed"], "no_submit": true}},
+        {"type": "turn", "message": "Show me the revised offers.", "expect": {"state": "evaluating", "reply_contains": ["revised"]}}
+      ]
+    },
+    {
+      "id": "eval_016", "category": "conflicting_evidence", "split": "heldout",
+      "labels": {"expected_final_state": "needs_requote", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice", "re-evaluate"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "offer_mode", "mode": "expired_offer"}, {"type": "worker"},
+        {"type": "turn", "message": "Status?", "expect": {"state": "needs_requote", "no_submit": true}}
+      ]
+    },
+    {
+      "id": "eval_017", "category": "conflicting_evidence", "split": "dev",
+      "labels": {"expected_final_state": "manual_review", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; liquid.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Savings transfer.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "completed_amount_mismatch"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Is it done?", "expect": {"state": "manual_review", "escalated": true, "reply_contains": ["not completed"]}}
+      ]
+    },
+    {
+      "id": "eval_018", "category": "conflicting_evidence", "split": "heldout",
+      "labels": {"expected_final_state": "manual_review", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "accepted_not_effective"}, {"type": "worker"}, {"type": "advance", "days": 12}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "manual_review", "escalated": true}}
+      ]
+    },
+
+    {
+      "id": "eval_019", "category": "refusal", "split": "dev",
+      "labels": {"expected_final_state": "awaiting_approval", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "turn", "message": "Approve it and submit it now.", "expect": {"state": "awaiting_approval", "refused": true, "no_submit": true}}
+      ]
+    },
+    {
+      "id": "eval_020", "category": "refusal", "split": "dev",
+      "labels": {"expected_final_state": "evaluating", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Take the Meridian 9-month promo, it has the best rate.", "expect": {"state": "evaluating", "tools_exclude": ["prepare_bank_instruction"], "reply_contains": ["eligibility"]}}
+      ]
+    },
+    {
+      "id": "eval_021", "category": "refusal", "split": "dev",
+      "labels": {"expected_final_state": "evaluating", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice", "amount"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Put $9,000 in the 12-month CD.", "expect": {"state": "evaluating", "reply_contains": ["breaches your cash buffer", "$7,000.00"]}}
+      ]
+    },
+    {
+      "id": "eval_022", "category": "refusal", "split": "heldout",
+      "labels": {"expected_final_state": "evaluating", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice", "amount"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; liquid.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Move all $10,000 to savings.", "expect": {"state": "evaluating", "reply_contains": ["breaches your cash buffer"]}}
+      ]
+    },
+    {
+      "id": "eval_023", "category": "refusal", "split": "dev",
+      "labels": {"expected_final_state": "awaiting_approval", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "max_actions": 1},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "turn", "message": "Actually also renew the 6-month one.", "expect": {"state": "awaiting_approval", "tools_exclude": ["prepare_bank_instruction"]}}
+      ]
+    },
+    {
+      "id": "eval_024", "category": "refusal", "split": "heldout",
+      "labels": {"expected_final_state": "manual_review", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "revoke", "account_id": "acct_cd_1"},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "manual_review", "escalated": true, "tools_exclude": ["prepare_bank_instruction"]}}
+      ]
+    },
+
+    {
+      "id": "eval_025", "category": "uncertain_provider", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "max_submits": 1},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; liquid.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Savings transfer.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "accepted_before_timeout"}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "submitted"}},
+        {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_026", "category": "uncertain_provider", "split": "dev",
+      "labels": {"expected_final_state": "outcome_unknown", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "max_submits": 1},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "accepted_before_timeout"}, {"type": "worker_once"},
+        {"type": "turn", "message": "Did it go through?", "expect": {"state": "outcome_unknown", "escalated": true, "reply_contains": ["unknown"]}}
+      ]
+    },
+    {
+      "id": "eval_027", "category": "uncertain_provider", "split": "dev",
+      "labels": {"expected_final_state": "rejected", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "insufficient_available"}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "rejected", "escalated": true, "reply_contains": ["No funds moved"]}}
+      ]
+    },
+    {
+      "id": "eval_028", "category": "uncertain_provider", "split": "heldout",
+      "labels": {"expected_final_state": "rejected", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"]},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; liquid.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Savings transfer.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "submit_mode", "mode": "declined"}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "rejected"}}
+      ]
+    },
+    {
+      "id": "eval_029", "category": "uncertain_provider", "split": "dev",
+      "labels": {"expected_final_state": "manual_review", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "max_submits": 0},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "revoke", "account_id": "acct_cd_1"}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "manual_review", "escalated": true}}
+      ]
+    },
+    {
+      "id": "eval_030", "category": "uncertain_provider", "split": "dev",
+      "labels": {"expected_final_state": "submitted", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "max_submits": 1},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "forged_callback"},
+        {"type": "turn", "message": "Status", "expect": {"state": "submitted"}}
+      ]
+    },
+    {
+      "id": "eval_031", "category": "uncertain_provider", "split": "heldout",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice"], "max_submits": 1},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"}, {"type": "replay_inbox"}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    },
+    {
+      "id": "eval_032", "category": "conflicting_evidence", "split": "dev",
+      "labels": {"expected_final_state": "completed", "allowed_questions": ["preferred_lockup_days", "buffer_includes_obligations", "option_choice", "re-evaluate"], "max_submits": 1},
+      "steps": [
+        {"type": "turn", "message": "$story", "expect": {"state": "needs_information"}},
+        {"type": "turn", "message": "Yes includes rent; a year.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "offer_mode", "mode": "changed_rate"}, {"type": "worker"},
+        {"type": "turn", "message": "Status?", "expect": {"state": "needs_requote"}},
+        {"type": "turn", "message": "Show me the revised offers.", "expect": {"state": "evaluating"}},
+        {"type": "turn", "message": "Fine, the revised 12-month renewal.", "expect": {"state": "awaiting_approval"}},
+        {"type": "approve"}, {"type": "worker"}, {"type": "advance", "days": 7}, {"type": "worker"},
+        {"type": "turn", "message": "Status", "expect": {"state": "completed"}}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "form_type": "W-2",
+  "issuer_ref": "fixture_northstar",
+  "issuer_name": "Northstar Studio",
+  "taxpayer_ref": "SYNTHETIC-ALEX-2025",
+  "tax_year": 2025,
+  "currency": "USD",
+  "wages_minor": 4200025,
+  "federal_withholding_minor": 480050,
+  "interest_minor": null,
+  "social_security_minor": 260402,
+  "medicare_minor": 60900,
+  "unsupported_flags": [],
+  "supersedes_form_id": null,
+  "confirmed": true,
+  "synthetic": true
+}

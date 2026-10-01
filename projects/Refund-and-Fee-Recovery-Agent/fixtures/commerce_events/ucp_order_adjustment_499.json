@@ -1,0 +1,12 @@
+{
+  "schema": "ucp.order.v1-fixture",
+  "_note": "Fixture shaped after a UCP order with a post-purchase adjustment. The adjustment is pending and carries no payment reference, so it is evidence of a promise, not of a posted credit.",
+  "order": {
+    "id": "order_mock_499",
+    "currency": "USD",
+    "merchant": {"id": "mrc_mock_streaming", "name": "StreamBox (mock)"},
+    "adjustments": [
+      {"id": "adj_499_1", "type": "refund", "status": "pending", "amount": {"value_minor": 8499, "currency": "USD"}, "payment_reference": null, "created_at": "2026-09-01T10:15:00Z"}
+    ]
+  }
+}

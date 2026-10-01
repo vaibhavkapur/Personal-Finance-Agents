@@ -1,0 +1,62 @@
+{
+  "fixture_version": "fixture-v1",
+  "note": "Hand-checked expectations for the demo fixture (plan §17 phase 1 exit criterion). Amounts are integer minor units (cents).",
+  "base_case": {
+    "description": "Customer keeps $3,000 available: $1,000 buffer plus the $2,000 rent due 2026-10-05. Tuition ($1,200 due 2026-10-01) is a confirmed record and is paid from checking before the CD matures.",
+    "inputs": {
+      "as_of": "2026-09-26",
+      "deposit_id": "cd_demo_1",
+      "minimum_buffer_minor": 100000,
+      "obligation_ids": ["bill_demo_1"],
+      "buffer_includes_obligations": false
+    },
+    "projection": {
+      "2026-09-26": 120000,
+      "2026-09-30": 120000,
+      "2026-10-01": 0,
+      "2026-10-02": 0,
+      "2026-10-03": 1000000,
+      "2026-10-04": 1000000,
+      "2026-10-05": 800000
+    },
+    "pre_maturity_shortfalls": [
+      {"date": "2026-10-01", "balance_minor": 0, "reason": "Tuition installment is due before the CD matures; the locked CD cannot fund it."},
+      {"date": "2026-10-02", "balance_minor": 0, "reason": "Shortfall persists until the CD matures on 2026-10-03."}
+    ],
+    "pending_scenario_2026_10_01_balance_minor": 50000,
+    "lowest_balance_from_maturity_minor": 800000,
+    "max_lockable_minor": 700000,
+    "comparison_horizon_days": 365,
+    "comparison_principal_minor": 700000,
+    "offers": {
+      "off_harbor_12m": {"comparable": true, "earnings_to_term_minor": 28700, "earnings_at_horizon_minor": 28700, "net_at_horizon_minor": 28700, "locked_until": "2027-10-03"},
+      "off_harbor_6m": {"comparable": true, "earnings_to_term_minor": 13438, "earnings_at_horizon_minor": 13438, "net_at_horizon_minor": 13438, "locked_until": "2027-04-03"},
+      "off_northwind_hysa": {"comparable": true, "earnings_to_term_minor": 27300, "earnings_at_horizon_minor": 27300, "net_at_horizon_minor": 27300, "locked_until": null},
+      "off_meridian_9m": {"comparable": false, "exclusion_reasons": ["eligibility_unknown"]}
+    },
+    "allocation_checks": {
+      "700000": "feasible",
+      "700001": "infeasible: breaches buffer by 1 minor unit on 2026-10-05",
+      "800000": "infeasible"
+    }
+  },
+  "reserve_already_includes_obligations": {
+    "description": "Customer states a $3,000 reserve that already includes the $2,000 rent. The engine must not subtract the rent twice.",
+    "inputs": {
+      "minimum_buffer_minor": 300000,
+      "obligation_ids": ["bill_demo_1"],
+      "buffer_includes_obligations": true
+    },
+    "effective_buffer_minor": 100000,
+    "max_lockable_minor": 700000
+  },
+  "double_count_if_not_confirmed": {
+    "description": "Same $3,000 buffer without confirmation counts the rent separately: at most $5,000 can be locked.",
+    "inputs": {
+      "minimum_buffer_minor": 300000,
+      "obligation_ids": ["bill_demo_1"],
+      "buffer_includes_obligations": false
+    },
+    "max_lockable_minor": 500000
+  }
+}

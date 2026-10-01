@@ -1,0 +1,39 @@
+# Local stack: API + worker sharing one SQLite volume, plus the frontend dev server.
+# The mock providers run inside the API/worker process (no separate service needed).
+services:
+  api:
+    build: .
+    command: uvicorn backend.app.api.app:create_app --factory --host 0.0.0.0 --port 8000
+    environment:
+      DATABASE_PATH: /data/recovery.db
+      APP_ENV: mock
+      USE_FIXTURE_CLOCK: "1"
+    volumes:
+      - data:/data
+    ports:
+      - "${API_PORT:-8000}:8000"
+  worker:
+    build: .
+    command: python scripts/worker.py --interval 2
+    environment:
+      DATABASE_PATH: /data/recovery.db
+      APP_ENV: mock
+      USE_FIXTURE_CLOCK: "1"
+    volumes:
+      - data:/data
+    depends_on:
+      - api
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host"
+    environment:
+      VITE_API_URL: http://api:8000
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+    depends_on:
+      - api
+volumes:
+  data: {}

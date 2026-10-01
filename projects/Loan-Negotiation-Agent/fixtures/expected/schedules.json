@@ -1,0 +1,73 @@
+{
+  "generated_by": "tests/reference/amortization_ref.py (independent Fraction-based reference)",
+  "rounding_rule": "interest half-up to cent per period; level payment half-up to cent; final payment clears balance",
+  "fixture_version": "2026-09-26.1",
+  "schedules": [
+    {
+      "id": "existing_7pct_300",
+      "principal_minor": 30000000,
+      "note_rate_decimal": "0.0700",
+      "term_months": 300,
+      "scheduled_payment_minor": 212034,
+      "total_interest_minor": 33610016,
+      "balance_after_48_minor": 27955384,
+      "final_payment_minor": 211850,
+      "fingerprint": "sha256:f8e882c1ee40bbe04f1fe095698db556abbb15bca672f1940e9a1cd7b6899153"
+    },
+    {
+      "id": "offer_a_6.5pct_300",
+      "principal_minor": 30000000,
+      "note_rate_decimal": "0.0650",
+      "term_months": 300,
+      "scheduled_payment_minor": 202562,
+      "total_interest_minor": 30768731,
+      "balance_after_48_minor": 27810615,
+      "final_payment_minor": 202693,
+      "fingerprint": "sha256:f7a7f013d61f9fe2664fa69f5677fb65c730f8d61addfb82ec32fa273ae9cf3a"
+    },
+    {
+      "id": "offer_b_6.625pct_360",
+      "principal_minor": 30000000,
+      "note_rate_decimal": "0.06625",
+      "term_months": 360,
+      "scheduled_payment_minor": 192093,
+      "total_interest_minor": 39153804,
+      "balance_after_48_minor": 28549843,
+      "final_payment_minor": 192417,
+      "fingerprint": "sha256:85b74401933e5e6aafa46a6cfc09a05dbf64bb98db9e5baf048395c49a63b94d"
+    },
+    {
+      "id": "offer_c_6.75pct_300",
+      "principal_minor": 30000000,
+      "note_rate_decimal": "0.0675",
+      "term_months": 300,
+      "scheduled_payment_minor": 207273,
+      "total_interest_minor": 32182267,
+      "balance_after_48_minor": 27883982,
+      "final_payment_minor": 207640,
+      "fingerprint": "sha256:50fc37e8137bc7cbd922d076ed1affb9d4f918cb7016976a026afd3e1a524015"
+    },
+    {
+      "id": "offer_a_financed",
+      "principal_minor": 30450000,
+      "note_rate_decimal": "0.0650",
+      "term_months": 300,
+      "scheduled_payment_minor": 205601,
+      "total_interest_minor": 31229979,
+      "balance_after_48_minor": 28227740,
+      "final_payment_minor": 205280,
+      "fingerprint": "sha256:502bec868bfe078da570da396691a1ab41bfcb63711731dc4478021aa093fc0b"
+    },
+    {
+      "id": "zero_rate",
+      "principal_minor": 100000,
+      "note_rate_decimal": "0.0000",
+      "term_months": 7,
+      "scheduled_payment_minor": 14286,
+      "total_interest_minor": 0,
+      "balance_after_48_minor": 0,
+      "final_payment_minor": 14284,
+      "fingerprint": "sha256:c35948b23ea56aeeff90cd1613d3418a1eb04f0a3682cddc610f2b84af26ee11"
+    }
+  ]
+}

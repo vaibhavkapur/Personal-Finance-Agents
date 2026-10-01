@@ -1,0 +1,100 @@
+{
+  "fixture_version": "fixture-v1",
+  "note": "Synthetic records only. Banks, balances, rates and dates are illustrative and are not current offers.",
+  "clock_start": "2026-09-26T09:00:00Z",
+  "customers": [
+    {"id": "cus_demo_1", "display_name": "Demo Customer"}
+  ],
+  "providers": [
+    {"id": "bank_harbor", "display_name": "Harbor Federal (mock)"},
+    {"id": "bank_northwind", "display_name": "Northwind Bank (mock)"},
+    {"id": "bank_meridian", "display_name": "Meridian Savings (mock)"}
+  ],
+  "documents": [
+    {"id": "doc_stmt_checking_1", "owner_id": "cus_demo_1", "object_key": "fixtures/statements/checking-2026-09.pdf", "content_hash": "sha256:fixture-checking-2026-09", "source": "uploaded_statement", "captured_at": "2026-09-25T18:00:00Z", "summary": "Harbor checking statement, September 2026"},
+    {"id": "doc_cd_contract_1", "owner_id": "cus_demo_1", "object_key": "fixtures/contracts/cd-demo-1.pdf", "content_hash": "sha256:fixture-cd-contract-v3", "source": "uploaded_contract", "captured_at": "2026-09-25T18:05:00Z", "summary": "Harbor 12-month CD contract, version cd-v3"},
+    {"id": "doc_rent_lease_1", "owner_id": "cus_demo_1", "object_key": "fixtures/leases/lease-2026.pdf", "content_hash": "sha256:fixture-lease-2026", "source": "uploaded_lease", "captured_at": "2026-09-25T18:10:00Z", "summary": "Lease: rent due on the 5th"},
+    {"id": "doc_tuition_invoice_1", "owner_id": "cus_demo_1", "object_key": "fixtures/invoices/tuition-2026-10.pdf", "content_hash": "sha256:fixture-tuition-2026-10", "source": "uploaded_invoice", "captured_at": "2026-09-25T18:12:00Z", "summary": "Tuition installment invoice due 2026-10-01"}
+  ],
+  "accounts": [
+    {
+      "id": "acct_checking_1", "customer_id": "cus_demo_1", "provider_id": "bank_harbor",
+      "account_kind": "checking", "display_name": "Harbor Everyday Checking",
+      "ownership_verified": true, "currency": "USD",
+      "available_minor": 120000, "current_minor": 170000,
+      "pending": [{"description": "Payroll (pending credit)", "amount_minor": 50000, "expected_on": "2026-09-30"}],
+      "evidence_id": "doc_stmt_checking_1"
+    },
+    {
+      "id": "acct_savings_1", "customer_id": "cus_demo_1", "provider_id": "bank_northwind",
+      "account_kind": "savings", "display_name": "Northwind High-Yield Savings",
+      "ownership_verified": true, "currency": "USD",
+      "available_minor": 0, "current_minor": 0, "pending": [],
+      "evidence_id": null
+    },
+    {
+      "id": "acct_cd_1", "customer_id": "cus_demo_1", "provider_id": "bank_harbor",
+      "account_kind": "fixed_term_deposit", "display_name": "Harbor 12-Month CD",
+      "ownership_verified": true, "currency": "USD",
+      "available_minor": 0, "current_minor": 1000000, "pending": [],
+      "evidence_id": "doc_cd_contract_1"
+    }
+  ],
+  "deposit_contracts": [
+    {
+      "id": "cd_demo_1", "account_id": "acct_cd_1", "principal_minor": 1000000, "currency": "USD",
+      "apy_decimal": "0.0350", "opened_on": "2025-10-03", "term_days": 365,
+      "maturity_date": "2026-10-03", "renewal_instruction_deadline": "2026-10-02",
+      "grace_period_days": 10, "contract_version": "cd-v3",
+      "default_maturity_behavior": "auto_renew_same_term_at_then_current_rate",
+      "evidence_id": "doc_cd_contract_1"
+    }
+  ],
+  "obligations": [
+    {"id": "bill_demo_1", "customer_id": "cus_demo_1", "description": "Rent", "amount_minor": 200000, "currency": "USD", "due_date": "2026-10-05", "certainty": "confirmed", "evidence_id": "doc_rent_lease_1"},
+    {"id": "bill_demo_2", "customer_id": "cus_demo_1", "description": "Tuition installment", "amount_minor": 120000, "currency": "USD", "due_date": "2026-10-01", "certainty": "confirmed", "evidence_id": "doc_tuition_invoice_1"},
+    {"id": "bill_demo_3", "customer_id": "cus_demo_1", "description": "Car insurance renewal (estimate)", "amount_minor": 45000, "currency": "USD", "due_date": "2026-10-20", "certainty": "estimated", "evidence_id": null}
+  ],
+  "offers": [
+    {
+      "id": "off_harbor_12m", "provider_id": "bank_harbor", "for_deposit_id": "cd_demo_1",
+      "product_code": "HARBOR-CD-12M", "product_name": "12-Month CD Renewal", "product_version": "2026-09-r2",
+      "offer_kind": "cd_renewal", "apy_decimal": "0.0410", "rate_type": "fixed", "term_days": 365,
+      "fees_minor": 0, "fee_description": null,
+      "restrictions": {"early_withdrawal_penalty": "90 days of simple interest", "partial_withdrawal": false, "minimum_deposit_minor": 50000},
+      "accrual_method": "apy_compound", "rounding": "ROUND_HALF_EVEN",
+      "valid_until": "2026-10-02", "eligibility_status": "eligible", "eligibility_notes": "Renewal of existing contract cd_demo_1",
+      "destination_account_id": "acct_cd_1"
+    },
+    {
+      "id": "off_harbor_6m", "provider_id": "bank_harbor", "for_deposit_id": "cd_demo_1",
+      "product_code": "HARBOR-CD-6M", "product_name": "6-Month CD Renewal", "product_version": "2026-09-r2",
+      "offer_kind": "cd_renewal", "apy_decimal": "0.0385", "rate_type": "fixed", "term_days": 182,
+      "fees_minor": 0, "fee_description": null,
+      "restrictions": {"early_withdrawal_penalty": "60 days of simple interest", "partial_withdrawal": false, "minimum_deposit_minor": 50000},
+      "accrual_method": "simple_contractual", "rounding": "ROUND_HALF_EVEN",
+      "valid_until": "2026-10-02", "eligibility_status": "eligible", "eligibility_notes": "Renewal of existing contract cd_demo_1",
+      "destination_account_id": "acct_cd_1"
+    },
+    {
+      "id": "off_northwind_hysa", "provider_id": "bank_northwind", "for_deposit_id": "cd_demo_1",
+      "product_code": "NW-HYSA", "product_name": "High-Yield Savings (transfer)", "product_version": "2026-09-v1",
+      "offer_kind": "savings_transfer", "apy_decimal": "0.0390", "rate_type": "variable", "term_days": null,
+      "fees_minor": 0, "fee_description": null,
+      "restrictions": {"withdrawals_per_month": 6, "rate_may_change_without_notice": true},
+      "accrual_method": "apy_compound", "rounding": "ROUND_HALF_EVEN",
+      "valid_until": "2026-10-10", "eligibility_status": "eligible", "eligibility_notes": "Verified same-owner account acct_savings_1",
+      "destination_account_id": "acct_savings_1"
+    },
+    {
+      "id": "off_meridian_9m", "provider_id": "bank_meridian", "for_deposit_id": "cd_demo_1",
+      "product_code": "MER-PROMO-9M", "product_name": "9-Month Promotional CD", "product_version": "promo-2026-q3",
+      "offer_kind": "cd_new", "apy_decimal": "0.0500", "rate_type": "fixed", "term_days": 270,
+      "fees_minor": 2500, "fee_description": "Account opening fee",
+      "restrictions": {"requires_new_account": true, "minimum_deposit_minor": 500000, "early_withdrawal_penalty": "180 days of simple interest"},
+      "accrual_method": "apy_compound", "rounding": "ROUND_HALF_EVEN",
+      "valid_until": "2026-10-15", "eligibility_status": "unknown", "eligibility_notes": "New-account eligibility not confirmed; no verified same-owner account at Meridian",
+      "destination_account_id": null
+    }
+  ]
+}

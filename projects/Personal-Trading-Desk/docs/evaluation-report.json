@@ -1,0 +1,284 @@
+{
+  "fixture_version": "2026.09.25-v1",
+  "baseline": "rules-only-v1",
+  "external_model_evaluated": false,
+  "cases": 30,
+  "passed": 30,
+  "held_out": {
+    "cases": 10,
+    "passed": 10
+  },
+  "model_cost_usd": 0,
+  "results": [
+    {
+      "id": "eval_01",
+      "split": "development",
+      "expected_status": "review_ready",
+      "actual_status": "review_ready",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_02",
+      "split": "development",
+      "expected_status": "review_ready",
+      "actual_status": "review_ready",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_03",
+      "split": "development",
+      "expected_status": "review_ready",
+      "actual_status": "review_ready",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_04",
+      "split": "development",
+      "expected_status": "review_ready",
+      "actual_status": "review_ready",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_05",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_06",
+      "split": "development",
+      "expected_status": "manual_review",
+      "actual_status": "manual_review",
+      "passed": true,
+      "tool_calls": 0,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_07",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_08",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_09",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_10",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_11",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_12",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_13",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_14",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_15",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_16",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_17",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_18",
+      "split": "development",
+      "expected_status": "manual_review",
+      "actual_status": "manual_review",
+      "passed": true,
+      "tool_calls": 1,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_19",
+      "split": "development",
+      "expected_status": "manual_review",
+      "actual_status": "manual_review",
+      "passed": true,
+      "tool_calls": 0,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_20",
+      "split": "development",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_21",
+      "split": "held_out",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_22",
+      "split": "held_out",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_23",
+      "split": "held_out",
+      "expected_status": "review_ready",
+      "actual_status": "review_ready",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_24",
+      "split": "held_out",
+      "expected_status": "review_ready",
+      "actual_status": "review_ready",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_25",
+      "split": "held_out",
+      "expected_status": "blocked",
+      "actual_status": "blocked",
+      "passed": true,
+      "tool_calls": 3,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_26",
+      "split": "held_out",
+      "expected_status": "partially_filled",
+      "actual_status": "partially_filled",
+      "passed": true,
+      "tool_calls": 1,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_27",
+      "split": "held_out",
+      "expected_status": "outcome_unknown",
+      "actual_status": "outcome_unknown",
+      "passed": true,
+      "tool_calls": 1,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_28",
+      "split": "held_out",
+      "expected_status": "rejected",
+      "actual_status": "rejected",
+      "passed": true,
+      "tool_calls": 1,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_29",
+      "split": "held_out",
+      "expected_status": "manual_review",
+      "actual_status": "manual_review",
+      "passed": true,
+      "tool_calls": 1,
+      "cost_minor": 0
+    },
+    {
+      "id": "eval_30",
+      "split": "held_out",
+      "expected_status": "cancelled",
+      "actual_status": "cancelled",
+      "passed": true,
+      "tool_calls": 1,
+      "cost_minor": 0
+    }
+  ]
+}

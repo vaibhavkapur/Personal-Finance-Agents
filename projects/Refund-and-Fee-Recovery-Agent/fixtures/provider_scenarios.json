@@ -1,0 +1,23 @@
+{
+  "_note": "How the simulated providers behave for each fixture order. Days are fixture-clock days after the request is accepted. 'refund_issued' is a claim; only statement postings move money.",
+  "merchant_mock": {
+    "default": {"behavior": "acknowledge_only", "days_to_acknowledge": 1},
+    "order_mock_499": {"behavior": "refund_after_followup", "refund_minor": 8499, "currency": "USD", "days_to_acknowledge": 1, "days_to_refund_issued": 2, "days_to_post": 3, "merchant_name": "STREAMBOX"},
+    "order_mock_500": {"behavior": "partial_refund", "refund_minor": 5000, "currency": "USD", "days_to_acknowledge": 1, "days_to_refund_issued": 2, "days_to_post": 3, "merchant_name": "STREAMBOX"},
+    "order_mock_502": {"behavior": "store_credit", "refund_minor": 8499, "currency": "USD", "days_to_acknowledge": 1, "days_to_refund_issued": 2},
+    "order_mock_503": {"behavior": "claims_completed_never_posts", "refund_minor": 12000, "currency": "USD", "days_to_acknowledge": 1, "days_to_refund_issued": 2},
+    "order_mock_504": {"behavior": "acknowledge_only", "days_to_acknowledge": 1},
+    "order_mock_505": {"behavior": "acknowledge_only", "days_to_acknowledge": 1},
+    "order_mock_declined": {"fault": "declined"},
+    "order_mock_timeout": {"behavior": "refund_after_followup", "refund_minor": 8499, "currency": "USD", "days_to_acknowledge": 1, "days_to_refund_issued": 2, "days_to_post": 3, "fault": "timeout_after_accept"},
+    "order_mock_malformed": {"fault": "malformed_response"},
+    "order_mock_delayed": {"behavior": "refund_after_followup", "refund_minor": 8499, "currency": "USD", "fault": "delayed_callback", "delay_days": 7, "days_to_acknowledge": 1, "days_to_refund_issued": 2, "days_to_post": 3},
+    "order_mock_unresponsive": {"behavior": "acknowledge_only", "days_to_acknowledge": 1}
+  },
+  "issuer_mock": {
+    "default": {"behavior": "provisional_then_final", "days_to_provisional": 2, "days_to_final": 7},
+    "order_mock_503": {"behavior": "provisional_then_reversed_then_final", "days_to_provisional": 2, "days_to_reversal": 5, "days_to_final": 7},
+    "order_mock_unresponsive": {"behavior": "provisional_then_final", "days_to_provisional": 2, "days_to_final": 7},
+    "order_mock_declined": {"behavior": "declined_after_review", "days_to_decision": 10}
+  }
+}

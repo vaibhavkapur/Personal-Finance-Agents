@@ -1,0 +1,8 @@
+{
+  "_note": "Fixture bearer tokens for the prototype. Replace with a real identity provider before any non-mock deployment.",
+  "tokens": {
+    "tok_demo_customer": {"subject": "cus_demo_4", "role": "customer", "customer_id": "cus_demo_4", "tenant_id": "tenant_demo"},
+    "tok_demo_other_customer": {"subject": "cus_other_9", "role": "customer", "customer_id": "cus_other_9", "tenant_id": "tenant_demo"},
+    "tok_demo_operator": {"subject": "ops_demo_1", "role": "operator", "customer_id": null, "tenant_id": "tenant_demo"}
+  }
+}

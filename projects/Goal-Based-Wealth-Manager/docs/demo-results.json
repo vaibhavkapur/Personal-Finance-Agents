@@ -1,0 +1,154 @@
+{
+  "demo": "earlier",
+  "original_monthly_minor": 100000,
+  "revised_monthly_minor": 200000,
+  "shortfall_minor": 0,
+  "status": "completed",
+  "actions": [
+    {
+      "id": "proposal_8d164a87b2_0",
+      "request_ref": "proposal_8d164a87b2_0",
+      "payload": {
+        "type": "contribution",
+        "account_id": "taxable",
+        "amount_minor": 200000,
+        "currency": "USD",
+        "source": "Synthetic checking \u2022\u20222048",
+        "destination": "Everyday investing"
+      },
+      "status": "filled",
+      "provider_ref": "mock_c1c84d0ae76748ca",
+      "executed": {
+        "type": "contribution",
+        "account_id": "taxable",
+        "amount_minor": 200000,
+        "currency": "USD",
+        "source": "Synthetic checking \u2022\u20222048",
+        "destination": "Everyday investing"
+      }
+    },
+    {
+      "id": "proposal_8d164a87b2_1",
+      "request_ref": "proposal_8d164a87b2_1",
+      "payload": {
+        "type": "buy",
+        "account_id": "taxable",
+        "instrument_id": "SYN-BD-T",
+        "asset_class": "bonds",
+        "quantity_micro": 4000000,
+        "price_minor": 10000,
+        "amount_minor": 40000,
+        "currency": "USD",
+        "destination": "Everyday investing"
+      },
+      "status": "filled",
+      "provider_ref": "mock_0d91b39e73d2460a",
+      "executed": {
+        "type": "buy",
+        "account_id": "taxable",
+        "instrument_id": "SYN-BD-T",
+        "asset_class": "bonds",
+        "quantity_micro": 4000000,
+        "price_minor": 10000,
+        "amount_minor": 40000,
+        "currency": "USD",
+        "destination": "Everyday investing"
+      }
+    }
+  ],
+  "reconciliation": {
+    "actual_values": {
+      "equity": 1600000,
+      "bonds": 1440000,
+      "cash": 760000
+    },
+    "actual_weights_bps": {
+      "equity": 4211,
+      "bonds": 3789,
+      "cash": 2000
+    },
+    "conserved": true,
+    "matches_preview": true,
+    "verified_at": "2026-09-25T16:00:00+00:00",
+    "provider_refs": [
+      "mock_c1c84d0ae76748ca",
+      "mock_0d91b39e73d2460a"
+    ],
+    "environment": "mock"
+  }
+}
+{
+  "demo": "insufficient",
+  "original_monthly_minor": 100000,
+  "revised_monthly_minor": 200000,
+  "shortfall_minor": 1200000
+}
+{
+  "demo": "partial",
+  "original_monthly_minor": 100000,
+  "revised_monthly_minor": 200000,
+  "shortfall_minor": 0,
+  "status": "exception_review",
+  "actions": [
+    {
+      "id": "proposal_55e8e5e72a_0",
+      "request_ref": "proposal_55e8e5e72a_0",
+      "payload": {
+        "type": "contribution",
+        "account_id": "taxable",
+        "amount_minor": 200000,
+        "currency": "USD",
+        "source": "Synthetic checking \u2022\u20222048",
+        "destination": "Everyday investing"
+      },
+      "status": "filled",
+      "provider_ref": "mock_2e0b882c71124b9a",
+      "executed": {
+        "type": "contribution",
+        "account_id": "taxable",
+        "amount_minor": 200000,
+        "currency": "USD",
+        "source": "Synthetic checking \u2022\u20222048",
+        "destination": "Everyday investing"
+      }
+    },
+    {
+      "id": "proposal_55e8e5e72a_1",
+      "request_ref": "proposal_55e8e5e72a_1",
+      "payload": {
+        "type": "buy",
+        "account_id": "taxable",
+        "instrument_id": "SYN-BD-T",
+        "asset_class": "bonds",
+        "quantity_micro": 4000000,
+        "price_minor": 10000,
+        "amount_minor": 40000,
+        "currency": "USD",
+        "destination": "Everyday investing"
+      },
+      "status": "declined",
+      "provider_ref": "mock_c40bdd7feded468b",
+      "executed": null
+    }
+  ],
+  "reconciliation": {
+    "actual_values": {
+      "equity": 1600000,
+      "bonds": 1400000,
+      "cash": 800000
+    },
+    "actual_weights_bps": {
+      "equity": 4211,
+      "bonds": 3684,
+      "cash": 2105
+    },
+    "conserved": true,
+    "matches_preview": false,
+    "verified_at": "2026-09-25T16:00:00+00:00",
+    "provider_refs": [
+      "mock_2e0b882c71124b9a"
+    ],
+    "environment": "mock"
+  },
+  "remainder_status": "completed"
+}

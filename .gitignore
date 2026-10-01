@@ -1,0 +1,8 @@
+.DS_Store
+# Local planning notes predate this consolidation and are not part of the import.
+/migration-plans/
+# User-requested local-only development and migration plans.
+plan.md
+new_plan.md
+# Local recovery copy of the history before the requested squash.
+/local-backups/

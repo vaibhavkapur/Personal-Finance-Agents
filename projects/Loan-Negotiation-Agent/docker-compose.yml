@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: loan
+      POSTGRES_PASSWORD: loan
+      POSTGRES_DB: loan_agent
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loan -d loan_agent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://loan:loan@db:5432/loan_agent
+      APP_ENV: mock
+      PROVIDER_ENV: mock
+      USE_FIXTURE_CLOCK: "1"
+      FIXTURE_CLOCK_START: "2026-09-26T12:00:00+00:00"
+      OPERATOR_TOKEN: demo-operator-token
+      WEBHOOK_SIGNING_SECRET: local-dev-webhook-secret
+      # The mock lender network is an in-process simulator, so the worker runs inside the API
+      # process in compose. Set RUN_WORKER_IN_API=0 and start scripts/worker.py separately once
+      # the simulator is hosted as its own service.
+      RUN_WORKER_IN_API: "1"
+    command: ["python", "scripts/serve.py", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

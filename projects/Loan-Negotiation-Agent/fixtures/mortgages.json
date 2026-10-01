@@ -1,0 +1,64 @@
+{
+  "fixture_version": "2026-09-26.1",
+  "mortgages": [
+    {
+      "id": "mortgage_demo_1",
+      "customer_id": "cus_demo_5",
+      "servicer": "Fixture Servicing Co.",
+      "product": "30-year fixed (conventional)",
+      "currency": "USD",
+      "balance_minor": 30000000,
+      "note_rate_decimal": "0.0700",
+      "remaining_months": 300,
+      "monthly_pi_minor": 212034,
+      "escrow_minor": 65000,
+      "stated_total_payment_minor": 277034,
+      "payment_includes_escrow": true,
+      "as_of": "2026-09-01T00:00:00Z",
+      "evidence_id": "doc_statement_2026_09"
+    },
+    {
+      "id": "mortgage_other_1",
+      "customer_id": "cus_other_9",
+      "servicer": "Fixture Servicing Co.",
+      "product": "30-year fixed (conventional)",
+      "currency": "USD",
+      "balance_minor": 24000000,
+      "note_rate_decimal": "0.0675",
+      "remaining_months": 324,
+      "monthly_pi_minor": 160000,
+      "escrow_minor": 50000,
+      "stated_total_payment_minor": 210000,
+      "payment_includes_escrow": true,
+      "as_of": "2026-09-01T00:00:00Z",
+      "evidence_id": "doc_statement_other_2026_09"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_statement_2026_09",
+      "owner_customer_id": "cus_demo_5",
+      "kind": "mortgage_statement",
+      "source": "fixture",
+      "captured_at": "2026-09-05T00:00:00Z",
+      "extraction_version": "fixture-1"
+    },
+    {
+      "id": "doc_paystub_2026_09",
+      "owner_customer_id": "cus_demo_5",
+      "kind": "pay_stub",
+      "source": "fixture",
+      "captured_at": "2026-09-10T00:00:00Z",
+      "extraction_version": "fixture-1",
+      "note": "Synthetic income evidence. Gross annual income shown: USD 145,000.00 (matches verified_facts)."
+    },
+    {
+      "id": "doc_statement_other_2026_09",
+      "owner_customer_id": "cus_other_9",
+      "kind": "mortgage_statement",
+      "source": "fixture",
+      "captured_at": "2026-09-05T00:00:00Z",
+      "extraction_version": "fixture-1"
+    }
+  ]
+}

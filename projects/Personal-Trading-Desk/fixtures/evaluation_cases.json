@@ -1,0 +1,276 @@
+{
+  "fixture_version": "2026.09.25-v1",
+  "description": "Rules-only state and evidence evaluation. First 20 development, final 10 held out from the baseline implementation. Synthetic fixtures, not trading performance.",
+  "cases": [
+    {
+      "id": "eval_01",
+      "label": "AAPL passes all checks",
+      "kind": "ordinary",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "review_ready",
+      "budget": 4
+    },
+    {
+      "id": "eval_02",
+      "label": "MSFT passes all checks",
+      "kind": "ordinary",
+      "symbol": "MSFT",
+      "split": "development",
+      "expected_status": "review_ready",
+      "budget": 4
+    },
+    {
+      "id": "eval_03",
+      "label": "NVDA passes all checks",
+      "kind": "ordinary",
+      "symbol": "NVDA",
+      "split": "development",
+      "expected_status": "review_ready",
+      "budget": 4
+    },
+    {
+      "id": "eval_04",
+      "label": "AMZN passes all checks",
+      "kind": "ordinary",
+      "symbol": "AMZN",
+      "split": "development",
+      "expected_status": "review_ready",
+      "budget": 4
+    },
+    {
+      "id": "eval_05",
+      "label": "No crossover produces hold",
+      "kind": "ordinary",
+      "symbol": "GOOGL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_06",
+      "label": "Unknown symbol asks for evidence",
+      "kind": "ordinary",
+      "symbol": "ZZZZ",
+      "split": "development",
+      "expected_status": "manual_review",
+      "budget": 4
+    },
+    {
+      "id": "eval_07",
+      "label": "Revoked mandate refuses",
+      "kind": "revoked",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_08",
+      "label": "Expired mandate refuses",
+      "kind": "expired",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_09",
+      "label": "Kill switch blocks submissions",
+      "kind": "kill",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_10",
+      "label": "Stale quote blocks",
+      "kind": "stale",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_11",
+      "label": "Closed market blocks",
+      "kind": "closed",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_12",
+      "label": "Per order cap enforced",
+      "kind": "per_order",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_13",
+      "label": "Symbol cap enforced",
+      "kind": "per_symbol",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_14",
+      "label": "Aggregate cap enforced",
+      "kind": "aggregate",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_15",
+      "label": "Daily turnover cap enforced",
+      "kind": "turnover",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_16",
+      "label": "Insufficient buying power",
+      "kind": "cash",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_17",
+      "label": "Symbol outside mandate",
+      "kind": "disallowed",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_18",
+      "label": "Missing historical bars",
+      "kind": "missing_history",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "manual_review",
+      "budget": 4
+    },
+    {
+      "id": "eval_19",
+      "label": "Future observed quote refused",
+      "kind": "future_quote",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "manual_review",
+      "budget": 4
+    },
+    {
+      "id": "eval_20",
+      "label": "Stale held position valuation",
+      "kind": "position_stale",
+      "symbol": "AAPL",
+      "split": "development",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_21",
+      "label": "Conflicting broker ledger blocks",
+      "kind": "unreconciled",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_22",
+      "label": "Sub share target refused",
+      "kind": "zero_quantity",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_23",
+      "label": "Future bar ignored",
+      "kind": "future_bar",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "review_ready",
+      "budget": 4
+    },
+    {
+      "id": "eval_24",
+      "label": "Provider instructions inert",
+      "kind": "untrusted_text",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "review_ready",
+      "budget": 4
+    },
+    {
+      "id": "eval_25",
+      "label": "Reservation consumes capacity",
+      "kind": "reserved_capacity",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "blocked",
+      "budget": 4
+    },
+    {
+      "id": "eval_26",
+      "label": "Partial execution report",
+      "kind": "report_partial",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "partially_filled",
+      "budget": 4
+    },
+    {
+      "id": "eval_27",
+      "label": "Unknown provider outcome",
+      "kind": "report_timeout",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "outcome_unknown",
+      "budget": 4
+    },
+    {
+      "id": "eval_28",
+      "label": "Broker rejection evidence",
+      "kind": "report_rejected",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "rejected",
+      "budget": 4
+    },
+    {
+      "id": "eval_29",
+      "label": "Malformed response escalation",
+      "kind": "report_malformed",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "manual_review",
+      "budget": 4
+    },
+    {
+      "id": "eval_30",
+      "label": "Cancellation race preserves fill",
+      "kind": "report_cancel_race",
+      "symbol": "AAPL",
+      "split": "held_out",
+      "expected_status": "cancelled",
+      "budget": 4
+    }
+  ]
+}

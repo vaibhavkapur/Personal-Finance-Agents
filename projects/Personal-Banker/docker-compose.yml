@@ -1,0 +1,48 @@
+# Database, API, worker and mock provider (the mock bank runs inside the API
+# and worker processes against the shared database). No external credentials.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: banker
+      POSTGRES_PASSWORD: banker
+      POSTGRES_DB: personal_banker
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U banker -d personal_banker"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      PB_DATABASE_URL: postgresql+psycopg://banker:banker@db:5432/personal_banker
+      PB_ENVIRONMENT: mock
+      PB_WEBHOOK_SECRET: compose-demo-secret
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+  worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["python", "-m", "app.workflows.worker"]
+    environment:
+      PB_DATABASE_URL: postgresql+psycopg://banker:banker@db:5432/personal_banker
+      PB_ENVIRONMENT: mock
+      PB_WEBHOOK_SECRET: compose-demo-secret
+    depends_on:
+      db:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+volumes:
+  pgdata:

@@ -1,0 +1,46 @@
+{
+  "fixture_version": "2026-09-26.1",
+  "note": "Synthetic records only. No real persons, properties or lenders.",
+  "customers": [
+    {
+      "id": "cus_demo_5",
+      "tenant_id": "tenant_demo",
+      "display_name": "Demo Borrower",
+      "email": "demo.borrower@example.test",
+      "api_token": "demo-borrower-token",
+      "property": {
+        "address_line": "100 Fixture Lane",
+        "city": "Springfield",
+        "state": "IL",
+        "occupancy": "primary_residence",
+        "estimated_value_minor": 45000000
+      },
+      "verified_facts": {
+        "annual_income_minor": 14500000,
+        "income_evidence_document_id": null,
+        "employment_status": "employed",
+        "credit_score_band": "740-759"
+      }
+    },
+    {
+      "id": "cus_other_9",
+      "tenant_id": "tenant_other",
+      "display_name": "Other Borrower",
+      "email": "other.borrower@example.test",
+      "api_token": "other-borrower-token",
+      "property": {
+        "address_line": "200 Fixture Court",
+        "city": "Madison",
+        "state": "WI",
+        "occupancy": "primary_residence",
+        "estimated_value_minor": 38000000
+      },
+      "verified_facts": {
+        "annual_income_minor": 9800000,
+        "income_evidence_document_id": null,
+        "employment_status": "employed",
+        "credit_score_band": "700-719"
+      }
+    }
+  ]
+}

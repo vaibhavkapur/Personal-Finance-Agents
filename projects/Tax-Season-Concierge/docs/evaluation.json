@@ -1,0 +1,914 @@
+{
+  "fixture_version": "2025-v1",
+  "fixture_sha256": "82300f58e100ab43e7cba77ff1dc8f488bd667660e03b473d55e6cb6f3bce90b",
+  "rule_pack_id": "US-FEDERAL-2025-single-v1",
+  "scope": "Synthetic regression evaluation; not customer outcomes, model evaluation or independent tax review",
+  "orchestrator": "rules-only-v1",
+  "model_cost_usd": 0,
+  "total": 43,
+  "passed": 43,
+  "held_out_total": 10,
+  "results": [
+    {
+      "id": "two_jobs",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 86200
+      },
+      "actual": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 36.6
+    },
+    {
+      "id": "balance_due",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "balance_due_followup",
+        "amount_due_minor": 233900
+      },
+      "actual": {
+        "outcome": "balance_due_followup",
+        "tax_minor": 733900,
+        "refund_minor": 0,
+        "amount_due_minor": 233900,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "balance_due_followup",
+        "tax_minor": 733900,
+        "refund_minor": 0,
+        "amount_due_minor": 233900,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 63.58
+    },
+    {
+      "id": "corrected_withholding",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "awaiting_approval",
+        "refund_minor": 136200
+      },
+      "actual": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 136200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 136200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 62.0
+    },
+    {
+      "id": "duplicate_w2",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "awaiting_approval",
+        "refund_minor": 86200
+      },
+      "actual": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 48.61
+    },
+    {
+      "id": "accepted_not_refunded",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "refund_pending"
+      },
+      "actual": {
+        "outcome": "refund_pending",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "refund_pending",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 71.37
+    },
+    {
+      "id": "notice_not_refunded",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "refund_pending"
+      },
+      "actual": {
+        "outcome": "refund_pending",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "refund_pending",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 60.87
+    },
+    {
+      "id": "refund_verified",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "refund_verified",
+        "refund_minor": 86200
+      },
+      "actual": {
+        "outcome": "refund_verified",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "refund_verified",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 62.16
+    },
+    {
+      "id": "identity_rejected",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "rejected"
+      },
+      "actual": {
+        "outcome": "rejected",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "rejected",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 60.08
+    },
+    {
+      "id": "timeout_unknown",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "manual_review"
+      },
+      "actual": {
+        "outcome": "manual_review",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "manual_review",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 55.05
+    },
+    {
+      "id": "timeout_recovered",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "refund_pending"
+      },
+      "actual": {
+        "outcome": "refund_pending",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "refund_pending",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 96.57
+    },
+    {
+      "id": "malformed_recovered",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "submitted"
+      },
+      "actual": {
+        "outcome": "submitted",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "submitted",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 76.77
+    },
+    {
+      "id": "delayed_acceptance",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "submitted"
+      },
+      "actual": {
+        "outcome": "submitted",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "submitted",
+        "tax_minor": 733900,
+        "refund_minor": 86200,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 65.81
+    },
+    {
+      "id": "missing_interest",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "actual": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "latency_ms": 11.55
+    },
+    {
+      "id": "missing_w2",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "actual": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "latency_ms": 11.54
+    },
+    {
+      "id": "missing_attestation",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "actual": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "latency_ms": 13.56
+    },
+    {
+      "id": "unconfirmed_amounts",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "actual": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "latency_ms": 13.35
+    },
+    {
+      "id": "identity_conflict",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "actual": {
+        "outcome": "needs_information",
+        "questions": 2,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "needs_information",
+        "questions": 2,
+        "tool_calls": 0
+      },
+      "latency_ms": 13.95
+    },
+    {
+      "id": "schedule_b_limit",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 12.06
+    },
+    {
+      "id": "interest_at_limit",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "awaiting_approval"
+      },
+      "actual": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 762500,
+        "refund_minor": 57600,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 2
+      },
+      "baseline": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 762500,
+        "refund_minor": 57600,
+        "amount_due_minor": 0,
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 36.77
+    },
+    {
+      "id": "above_table",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 12.68
+    },
+    {
+      "id": "possible_eic",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 13.66
+    },
+    {
+      "id": "w2_tips_flag",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 13.23
+    },
+    {
+      "id": "missing_scope_answer",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "actual": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "needs_information",
+        "questions": 1,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.16
+    },
+    {
+      "id": "senior_profile",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.5
+    },
+    {
+      "id": "exclude_us_resident",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.4
+    },
+    {
+      "id": "exclude_not_dependent",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.18
+    },
+    {
+      "id": "exclude_not_blind",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.26
+    },
+    {
+      "id": "exclude_no_dependents",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.12
+    },
+    {
+      "id": "exclude_ordinary_wages_only",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.36
+    },
+    {
+      "id": "exclude_no_other_income",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.3
+    },
+    {
+      "id": "exclude_no_adjustments",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.39
+    },
+    {
+      "id": "exclude_no_credits",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 4.94
+    },
+    {
+      "id": "exclude_no_special_deductions",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 6.75
+    },
+    {
+      "id": "exclude_standard_deduction",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 6.92
+    },
+    {
+      "id": "exclude_no_foreign_accounts",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.92
+    },
+    {
+      "id": "exclude_ordinary_interest_only",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.46
+    },
+    {
+      "id": "exclude_no_marketplace",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.25
+    },
+    {
+      "id": "exclude_no_other_taxes",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 6.79
+    },
+    {
+      "id": "exclude_no_estimated_payments",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.9
+    },
+    {
+      "id": "exclude_no_digital_assets",
+      "split": "held_out",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 4.94
+    },
+    {
+      "id": "exclude_no_community_property",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.42
+    },
+    {
+      "id": "exclude_no_other_requirements",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 6.25
+    },
+    {
+      "id": "exclude_not_already_filed",
+      "split": "development",
+      "passed": true,
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "actual": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "baseline": {
+        "outcome": "out_of_scope",
+        "questions": 0,
+        "tool_calls": 0
+      },
+      "latency_ms": 5.52
+    }
+  ]
+}

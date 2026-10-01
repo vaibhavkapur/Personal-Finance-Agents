@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "insurance-shopping-agent"
+version = "0.1.0"
+description = "Renters insurance shopping agent prototype: needs interview, multi-insurer quote exchange (A2A), MCP tools, exact-action approvals and issuance verification against mock insurers."
+requires-python = ">=3.9"
+dependencies = [
+  "fastapi>=0.115,<0.116",
+  "uvicorn>=0.30,<0.31",
+  "pydantic>=2.9,<3",
+  "sqlalchemy>=2.0,<2.1",
+  "httpx>=0.27,<0.28",
+  "anyio>=4,<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "pytest-asyncio>=0.24,<0.25"]
+postgres = ["psycopg[binary]>=3.1,<4"]
+
+[tool.setuptools]
+package-dir = {"" = "backend"}
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+
+[tool.pytest.ini_options]
+pythonpath = ["backend"]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]

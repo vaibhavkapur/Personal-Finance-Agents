@@ -1,0 +1,31 @@
+{
+  "fixture_version": "2026.09.1",
+  "state_code": "CA",
+  "state_name": "California",
+  "product": "renters",
+  "policy_form_family": "HO-4 style renters (fictional simplified form)",
+  "currency": "USD",
+  "notes": [
+    "All values are synthetic fixtures for a prototype. They do not describe any real insurer, rate filing or state rule.",
+    "Only one state and one product class are supported in this release."
+  ],
+  "supported_item_classes": [
+    "jewelry",
+    "bicycles",
+    "electronics",
+    "musical_instruments",
+    "home_business_property"
+  ],
+  "interview_fields": [
+    {"field": "address", "label": "Rental address (street, city, ZIP)", "material": true},
+    {"field": "desired_effective_date", "label": "Coverage start date", "material": true},
+    {"field": "property_limit_minor", "label": "Personal property limit", "material": true},
+    {"field": "liability_limit_minor", "label": "Personal liability limit", "material": true},
+    {"field": "deductible_cap_minor", "label": "Highest deductible you would accept", "material": true},
+    {"field": "replacement_cost_required", "label": "Replacement-cost settlement required", "material": true},
+    {"field": "required_item_classes", "label": "Item classes that must be covered", "material": true},
+    {"field": "deductible_preference", "label": "Ranking preference after suitability (lower_premium | lower_deductible)", "material": false}
+  ],
+  "min_effective_date_lead_days": 1,
+  "max_effective_date_lead_days": 90
+}

@@ -1,0 +1,56 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: estate
+      POSTGRES_PASSWORD: synthetic-local-only
+      POSTGRES_DB: estate
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U estate]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+  init:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://estate:synthetic-local-only@db:5432/estate
+    command: [python, -m, backend.app.seed]
+    volumes: ["app_keys:/app/data"]
+    depends_on:
+      db: {condition: service_healthy}
+  api:
+    build: .
+    ports: ["127.0.0.1:${ESTATE_PORT:-8731}:8731"]
+    environment: &app_env
+      DATABASE_URL: postgresql+psycopg://estate:synthetic-local-only@db:5432/estate
+      ALLOWED_ORIGINS: http://127.0.0.1:${ESTATE_PORT:-8731},http://localhost:${ESTATE_PORT:-8731}
+      EMBEDDED_WORKER: "0"
+      MOCK_PROVIDER_URL: http://provider:8732
+      MOCK_PROVIDER_TOKEN: synthetic-provider-token
+      PROVIDER_WEBHOOK_SECRET: synthetic-webhook-key
+      DEMO_PASSWORD: everkeep-demo
+    volumes: ["app_keys:/app/data"]
+    depends_on:
+      init: {condition: service_completed_successfully}
+  worker:
+    build: .
+    environment: *app_env
+    command: [python, -m, backend.app.workflows.worker]
+    volumes: ["app_keys:/app/data"]
+    depends_on:
+      init: {condition: service_completed_successfully}
+      provider: {condition: service_started}
+  provider:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://estate:synthetic-local-only@db:5432/estate
+      MOCK_PROVIDER_TOKEN: synthetic-provider-token
+    command: [uvicorn, backend.app.adapters.server:app, --host, 0.0.0.0, --port, "8732"]
+    volumes: ["app_keys:/app/data"]
+    depends_on:
+      init: {condition: service_completed_successfully}
+volumes:
+  postgres_data:
+  app_keys:

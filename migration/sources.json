@@ -1,0 +1,208 @@
+{
+  "schema_version": 2,
+  "imported_on": "2026-10-01",
+  "destination": "https://github.com/vaibhavkapur/Personal-Finance-Agents",
+  "history": "Squashed into one initial commit on 1 October 2026. Original commits and migration tags are retained only in a local Git bundle backup.",
+  "repositories": [
+    {
+      "name": "Personal-Banker",
+      "url": "https://github.com/vaibhavkapur/Personal-Banker",
+      "clone_url": "https://github.com/vaibhavkapur/Personal-Banker.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "71c2566be17ca435637619b0d4680215a8ae8bb1",
+      "tree": "bd55d7a442b46628488f3a37440bbe1b24941c08",
+      "path": "projects/Personal-Banker",
+      "file_count": 97,
+      "original_refs": {
+        "refs/heads/main": "71c2566be17ca435637619b0d4680215a8ae8bb1"
+      },
+      "snapshot_tree": "0b3897aa54629745009f4e9d56caac46087ea37f"
+    },
+    {
+      "name": "Insurance-Shopping-Agent",
+      "url": "https://github.com/vaibhavkapur/Insurance-Shopping-Agent",
+      "clone_url": "https://github.com/vaibhavkapur/Insurance-Shopping-Agent.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "79df21657f6e02590117b86906323ee06aadf406",
+      "tree": "9d5a5069428559db730a4c57341bcbd991b93b1e",
+      "path": "projects/Insurance-Shopping-Agent",
+      "file_count": 117,
+      "original_refs": {
+        "refs/heads/main": "79df21657f6e02590117b86906323ee06aadf406"
+      },
+      "snapshot_tree": "c47dec2f7787d9c69a5111603003c57bf708539a"
+    },
+    {
+      "name": "Insurance-Claims-Advocate",
+      "url": "https://github.com/vaibhavkapur/Insurance-Claims-Advocate",
+      "clone_url": "https://github.com/vaibhavkapur/Insurance-Claims-Advocate.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "f59f0c200c281bde9b51bab08539868062daa828",
+      "tree": "b02e1eb923cca7b83d08bb1fe7d47b34b14b6893",
+      "path": "projects/Insurance-Claims-Advocate",
+      "file_count": 88,
+      "original_refs": {
+        "refs/heads/main": "f59f0c200c281bde9b51bab08539868062daa828"
+      },
+      "snapshot_tree": "a0ea810f5cb57e0faf0fc01b096c7c9a74b21c11"
+    },
+    {
+      "name": "Refund-and-Fee-Recovery-Agent",
+      "url": "https://github.com/vaibhavkapur/Refund-and-Fee-Recovery-Agent",
+      "clone_url": "https://github.com/vaibhavkapur/Refund-and-Fee-Recovery-Agent.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "b86d579536773e1c2d694548fa15520a1fe6eae6",
+      "tree": "5078af1ce092a51858bccc1823e67f1cdb350360",
+      "path": "projects/Refund-and-Fee-Recovery-Agent",
+      "file_count": 104,
+      "original_refs": {
+        "refs/heads/main": "b86d579536773e1c2d694548fa15520a1fe6eae6"
+      },
+      "snapshot_tree": "8c3df0f7aa623b5496d30e8a782d6a09759f216f"
+    },
+    {
+      "name": "Loan-Negotiation-Agent",
+      "url": "https://github.com/vaibhavkapur/Loan-Negotiation-Agent",
+      "clone_url": "https://github.com/vaibhavkapur/Loan-Negotiation-Agent.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "acad328ed3cb818573b4834bf36b0eb0fe961995",
+      "tree": "dfebb794b0fc83ffdec1f47edb00287bed510542",
+      "path": "projects/Loan-Negotiation-Agent",
+      "file_count": 96,
+      "original_refs": {
+        "refs/heads/main": "acad328ed3cb818573b4834bf36b0eb0fe961995"
+      },
+      "snapshot_tree": "3903d19b46b5dce9d6e2a8785e3ee309ac0b1bc4"
+    },
+    {
+      "name": "Personal-Trading-Desk",
+      "url": "https://github.com/vaibhavkapur/Personal-Trading-Desk",
+      "clone_url": "https://github.com/vaibhavkapur/Personal-Trading-Desk.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "a841ab4202c8e8015ed34f65231d3585b4d35073",
+      "tree": "d4c85c06c6f5bcc9d2b60ef0f48c46e8f9e88ecc",
+      "path": "projects/Personal-Trading-Desk",
+      "file_count": 47,
+      "original_refs": {
+        "refs/heads/main": "a841ab4202c8e8015ed34f65231d3585b4d35073"
+      },
+      "snapshot_tree": "dc733b49d663b2e09601bf3176a0a14024f7b270"
+    },
+    {
+      "name": "Goal-Based-Wealth-Manager",
+      "url": "https://github.com/vaibhavkapur/Goal-Based-Wealth-Manager",
+      "clone_url": "https://github.com/vaibhavkapur/Goal-Based-Wealth-Manager.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "56d18cfef9796ab3d0854b799c9ead5ba589f282",
+      "tree": "b2f82386da63ddc0f4b1c51d678ebff7b6d4df9f",
+      "path": "projects/Goal-Based-Wealth-Manager",
+      "file_count": 51,
+      "original_refs": {
+        "refs/heads/main": "56d18cfef9796ab3d0854b799c9ead5ba589f282"
+      },
+      "snapshot_tree": "ff9531aec1ec91a5767ac6c9d9f540cde40b0c52"
+    },
+    {
+      "name": "Cross-Border-Money-Concierge",
+      "url": "https://github.com/vaibhavkapur/Cross-Border-Money-Concierge",
+      "clone_url": "https://github.com/vaibhavkapur/Cross-Border-Money-Concierge.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "113274fd8636a4e06e8bf1bf6627519eed404a44",
+      "tree": "d437bc366c6cbe831410546d8dc4edd9c086de6b",
+      "path": "projects/Cross-Border-Money-Concierge",
+      "file_count": 65,
+      "original_refs": {
+        "refs/heads/main": "113274fd8636a4e06e8bf1bf6627519eed404a44"
+      },
+      "snapshot_tree": "e036fdb6019a1414e0b4d5059c2f9df9374954b6"
+    },
+    {
+      "name": "Fraud-Response-Concierge",
+      "url": "https://github.com/vaibhavkapur/Fraud-Response-Concierge",
+      "clone_url": "https://github.com/vaibhavkapur/Fraud-Response-Concierge.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "b579b418dc2844dddebb76346844079a65835fc8",
+      "tree": "423ce34a9a4b3ff704ea2a8044b8a69ced753a19",
+      "path": "projects/Fraud-Response-Concierge",
+      "file_count": 57,
+      "original_refs": {
+        "refs/heads/main": "b579b418dc2844dddebb76346844079a65835fc8"
+      },
+      "snapshot_tree": "20f7efb2d300e7d84d4add38441492771ceeadcc"
+    },
+    {
+      "name": "Tax-Season-Concierge",
+      "url": "https://github.com/vaibhavkapur/Tax-Season-Concierge",
+      "clone_url": "https://github.com/vaibhavkapur/Tax-Season-Concierge.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "945080d4524f027036ce0f236a9e053a49c99e6e",
+      "tree": "f2e97fb15cc25ada6a3e01edb5779f661f4b85e0",
+      "path": "projects/Tax-Season-Concierge",
+      "file_count": 70,
+      "original_refs": {
+        "refs/heads/main": "945080d4524f027036ce0f236a9e053a49c99e6e"
+      },
+      "snapshot_tree": "ab3134fbef3321caba650cc15ac35f26849aee21"
+    },
+    {
+      "name": "Inheritance-and-Dormant-Asset-Navigator",
+      "url": "https://github.com/vaibhavkapur/Inheritance-and-Dormant-Asset-Navigator",
+      "clone_url": "https://github.com/vaibhavkapur/Inheritance-and-Dormant-Asset-Navigator.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "4b7c62e9d3c4fcbee107cc1779531f1ab5b3aee3",
+      "tree": "cf4b6c697c83d315b812ad9d0e032de768ca007f",
+      "path": "projects/Inheritance-and-Dormant-Asset-Navigator",
+      "file_count": 56,
+      "original_refs": {
+        "refs/heads/main": "4b7c62e9d3c4fcbee107cc1779531f1ab5b3aee3"
+      },
+      "snapshot_tree": "e26224c052f6acd18a2de9d209fd6bc231dc8081"
+    },
+    {
+      "name": "Freelancer-Payday-Agent",
+      "url": "https://github.com/vaibhavkapur/Freelancer-Payday-Agent",
+      "clone_url": "https://github.com/vaibhavkapur/Freelancer-Payday-Agent.git",
+      "default_branch": "main",
+      "visibility": "public",
+      "commit": "cdb2a2fbd44c3affbc5cfa230d46ee161563d1f5",
+      "tree": "ec69ebf6ecdf00f138b5fd87344276f57a1b8286",
+      "path": "projects/Freelancer-Payday-Agent",
+      "file_count": 56,
+      "original_refs": {
+        "refs/heads/main": "cdb2a2fbd44c3affbc5cfa230d46ee161563d1f5"
+      },
+      "snapshot_tree": "65aa3ea90fad0a30ea819e7a418a58936059e208"
+    }
+  ],
+  "local_source_directory": "~/Desktop/agentic-finance-plans",
+  "scope": "Only the 12 personal-finance projects in the user-selected local directory.",
+  "local_files_policy": "Leave all source folders and plan files locally; import no local-only plan files, runtime data, dependencies, or credentials.",
+  "local_folders": {
+    "Personal-Banker": "01 - Personal Banker",
+    "Insurance-Shopping-Agent": "02 - Insurance Shopping Agent/insurance-shopping-agent",
+    "Insurance-Claims-Advocate": "03 - Insurance Claims Advocate/insurance-claims-advocate",
+    "Refund-and-Fee-Recovery-Agent": "04 - Refund and Fee-Recovery Agent/refund-and-fee-recovery-agent",
+    "Loan-Negotiation-Agent": "05 - Loan Negotiation Agent",
+    "Personal-Trading-Desk": "06 - Personal Trading Desk",
+    "Goal-Based-Wealth-Manager": "07 - Goal-Based Wealth Manager",
+    "Cross-Border-Money-Concierge": "cross-border-money-concierge",
+    "Fraud-Response-Concierge": "09 - Fraud-Response Concierge",
+    "Tax-Season-Concierge": "10 - Tax-Season Concierge",
+    "Inheritance-and-Dormant-Asset-Navigator": "11 - Inheritance and Dormant-Asset Navigator",
+    "Freelancer-Payday-Agent": "12 - Freelancer Payday Agent"
+  },
+  "original_repositories_deleted_on": "2026-10-01",
+  "original_urls_status": "Historical source URLs for deleted repositories. Original commit and ref IDs are provenance records, not refs published by this repository.",
+  "squashed_on": "2026-10-01"
+}

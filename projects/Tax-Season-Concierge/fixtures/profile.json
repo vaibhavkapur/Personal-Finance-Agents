@@ -1,0 +1,34 @@
+{
+  "tax_year": 2025,
+  "jurisdiction": "US_FEDERAL",
+  "filing_status": "single",
+  "age_at_year_end": 32,
+  "answers": {
+    "us_resident": true,
+    "not_dependent": true,
+    "not_blind": true,
+    "no_dependents": true,
+    "ordinary_wages_only": true,
+    "no_other_income": true,
+    "no_adjustments": true,
+    "no_credits": true,
+    "no_special_deductions": true,
+    "standard_deduction": true,
+    "no_foreign_accounts": true,
+    "ordinary_interest_only": true,
+    "no_marketplace": true,
+    "no_other_taxes": true,
+    "no_estimated_payments": true,
+    "no_digital_assets": true,
+    "no_community_property": true,
+    "no_other_requirements": true,
+    "not_already_filed": true
+  },
+  "expected_w2_issuers": [
+    "fixture_northstar",
+    "fixture_atlas"
+  ],
+  "expected_interest_issuers": [
+    "fixture_harbor"
+  ]
+}

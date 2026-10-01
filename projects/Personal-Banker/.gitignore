@@ -1,0 +1,52 @@
+# local toolchains installed by the setup (uv, python, node)
+.tools/
+
+# python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/personal_banker.db*
+backend/.env
+
+# node
+frontend/node_modules/
+frontend/dist/
+
+# customer files and secrets never belong in the repo
+*.pem
+*.key
+.env
+.env.*
+!.env.example
+
+# Local runtime state, generated secrets, and dependency/build caches
+.DS_Store
+.tools/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+node_modules/
+dist/
+*.tsbuildinfo
+test-results/
+playwright-report/
+*.db
+*.db-*
+*.sqlite3
+*.sqlite3-*
+*.key
+*.pem
+*.p12
+.env
+.env.*
+!.env.example
+# Documentation build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
+vendor/

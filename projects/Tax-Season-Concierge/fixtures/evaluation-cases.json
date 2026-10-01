@@ -1,0 +1,483 @@
+{
+  "version": "2025-v1",
+  "cases": [
+    {
+      "id": "two_jobs",
+      "expected": {
+        "outcome": "awaiting_approval",
+        "tax_minor": 733900,
+        "refund_minor": 86200
+      },
+      "split": "development"
+    },
+    {
+      "id": "balance_due",
+      "scenario": "balance_due",
+      "submit": true,
+      "days": 3,
+      "expected": {
+        "outcome": "balance_due_followup",
+        "amount_due_minor": 233900
+      },
+      "split": "development"
+    },
+    {
+      "id": "corrected_withholding",
+      "correction": true,
+      "expected": {
+        "outcome": "awaiting_approval",
+        "refund_minor": 136200
+      },
+      "split": "development"
+    },
+    {
+      "id": "duplicate_w2",
+      "duplicate": true,
+      "expected": {
+        "outcome": "awaiting_approval",
+        "refund_minor": 86200
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "accepted_not_refunded",
+      "submit": true,
+      "days": 1,
+      "expected": {
+        "outcome": "refund_pending"
+      },
+      "split": "development"
+    },
+    {
+      "id": "notice_not_refunded",
+      "submit": true,
+      "days": 2,
+      "expected": {
+        "outcome": "refund_pending"
+      },
+      "split": "development"
+    },
+    {
+      "id": "refund_verified",
+      "submit": true,
+      "days": 3,
+      "expected": {
+        "outcome": "refund_verified",
+        "refund_minor": 86200
+      },
+      "split": "development"
+    },
+    {
+      "id": "identity_rejected",
+      "scenario": "rejection",
+      "submit": true,
+      "days": 1,
+      "expected": {
+        "outcome": "rejected"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "timeout_unknown",
+      "scenario": "timeout",
+      "submit": true,
+      "expected": {
+        "outcome": "manual_review"
+      },
+      "split": "development"
+    },
+    {
+      "id": "timeout_recovered",
+      "scenario": "timeout",
+      "submit": true,
+      "recover": true,
+      "expected": {
+        "outcome": "refund_pending"
+      },
+      "split": "development"
+    },
+    {
+      "id": "malformed_recovered",
+      "scenario": "malformed",
+      "submit": true,
+      "recover": true,
+      "expected": {
+        "outcome": "submitted"
+      },
+      "split": "development"
+    },
+    {
+      "id": "delayed_acceptance",
+      "scenario": "delayed",
+      "submit": true,
+      "days": 1,
+      "expected": {
+        "outcome": "submitted"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "missing_interest",
+      "missing": 3,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "split": "development"
+    },
+    {
+      "id": "missing_w2",
+      "missing": 1,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "split": "development"
+    },
+    {
+      "id": "missing_attestation",
+      "complete": false,
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "split": "development"
+    },
+    {
+      "id": "unconfirmed_amounts",
+      "forms": {
+        "0": {
+          "confirmed": false
+        }
+      },
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "identity_conflict",
+      "forms": {
+        "0": {
+          "taxpayer_ref": "SYNTHETIC-OTHER"
+        }
+      },
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "split": "development"
+    },
+    {
+      "id": "schedule_b_limit",
+      "forms": {
+        "2": {
+          "interest_minor": 150001
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "interest_at_limit",
+      "forms": {
+        "2": {
+          "interest_minor": 150000
+        }
+      },
+      "expected": {
+        "outcome": "awaiting_approval"
+      },
+      "split": "development"
+    },
+    {
+      "id": "above_table",
+      "forms": {
+        "0": {
+          "wages_minor": 12000000
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "possible_eic",
+      "forms": {
+        "0": {
+          "wages_minor": 100000
+        },
+        "1": {
+          "wages_minor": 100000
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "w2_tips_flag",
+      "forms": {
+        "0": {
+          "unsupported_flags": [
+            "allocated_tips"
+          ]
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "missing_scope_answer",
+      "profile": {
+        "answers": {
+          "no_credits": null
+        }
+      },
+      "expected": {
+        "outcome": "needs_information"
+      },
+      "split": "development"
+    },
+    {
+      "id": "senior_profile",
+      "profile": {
+        "age_at_year_end": 65
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "exclude_us_resident",
+      "profile": {
+        "answers": {
+          "us_resident": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_not_dependent",
+      "profile": {
+        "answers": {
+          "not_dependent": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_not_blind",
+      "profile": {
+        "answers": {
+          "not_blind": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_dependents",
+      "profile": {
+        "answers": {
+          "no_dependents": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "exclude_ordinary_wages_only",
+      "profile": {
+        "answers": {
+          "ordinary_wages_only": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_other_income",
+      "profile": {
+        "answers": {
+          "no_other_income": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_adjustments",
+      "profile": {
+        "answers": {
+          "no_adjustments": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_credits",
+      "profile": {
+        "answers": {
+          "no_credits": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "exclude_no_special_deductions",
+      "profile": {
+        "answers": {
+          "no_special_deductions": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_standard_deduction",
+      "profile": {
+        "answers": {
+          "standard_deduction": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_foreign_accounts",
+      "profile": {
+        "answers": {
+          "no_foreign_accounts": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_ordinary_interest_only",
+      "profile": {
+        "answers": {
+          "ordinary_interest_only": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "exclude_no_marketplace",
+      "profile": {
+        "answers": {
+          "no_marketplace": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_other_taxes",
+      "profile": {
+        "answers": {
+          "no_other_taxes": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_estimated_payments",
+      "profile": {
+        "answers": {
+          "no_estimated_payments": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_digital_assets",
+      "profile": {
+        "answers": {
+          "no_digital_assets": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "held_out"
+    },
+    {
+      "id": "exclude_no_community_property",
+      "profile": {
+        "answers": {
+          "no_community_property": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_no_other_requirements",
+      "profile": {
+        "answers": {
+          "no_other_requirements": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    },
+    {
+      "id": "exclude_not_already_filed",
+      "profile": {
+        "answers": {
+          "not_already_filed": false
+        }
+      },
+      "expected": {
+        "outcome": "out_of_scope"
+      },
+      "split": "development"
+    }
+  ]
+}

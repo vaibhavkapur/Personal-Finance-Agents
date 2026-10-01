@@ -1,0 +1,59 @@
+{
+  "fixture_version": "2026-09-26.1",
+  "note": "Mock lender behaviours for the simulator. None of these is a real institution.",
+  "lenders": [
+    {
+      "id": "lender_mock_servicer",
+      "name": "Fixture Servicing Co. (current servicer, mock)",
+      "environment": "mock",
+      "is_current_servicer": true,
+      "negotiation_behaviour": "refuse",
+      "application_behaviour": "not_offered",
+      "webhook_secret": "mock-secret-servicer",
+      "a2a_agent_card": {
+        "name": "Fixture Servicing Retention Agent (mock)",
+        "protocol_version": "0.3",
+        "skills": ["reprice_request"]
+      }
+    },
+    {
+      "id": "lender_mock_a",
+      "name": "Northstar Mortgage (mock)",
+      "environment": "mock",
+      "negotiation_behaviour": "small_credit",
+      "application_behaviour": "accept_with_income_condition",
+      "webhook_secret": "mock-secret-northstar",
+      "a2a_agent_card": {
+        "name": "Northstar Mortgage Pricing Agent (mock)",
+        "protocol_version": "0.3",
+        "skills": ["reprice_request", "comparable_offer"]
+      }
+    },
+    {
+      "id": "lender_mock_b",
+      "name": "Harbor Home Loans (mock)",
+      "environment": "mock",
+      "negotiation_behaviour": "match_rate_increase_fees",
+      "application_behaviour": "accept_with_increased_costs",
+      "webhook_secret": "mock-secret-harbor",
+      "a2a_agent_card": {
+        "name": "Harbor Home Loans Pricing Agent (mock)",
+        "protocol_version": "0.3",
+        "skills": ["reprice_request", "comparable_offer"]
+      }
+    },
+    {
+      "id": "lender_mock_c",
+      "name": "Summit Lending (mock)",
+      "environment": "mock",
+      "negotiation_behaviour": "request_income_proof",
+      "application_behaviour": "request_income_proof",
+      "webhook_secret": "mock-secret-summit",
+      "a2a_agent_card": {
+        "name": "Summit Lending Pricing Agent (mock)",
+        "protocol_version": "0.3",
+        "skills": ["reprice_request", "comparable_offer", "request_facts"]
+      }
+    }
+  ]
+}

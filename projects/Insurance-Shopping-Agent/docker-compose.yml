@@ -1,0 +1,83 @@
+# Local stack: PostgreSQL, API, worker and three independently running mock insurer agents (A2A).
+# All providers are simulators; no external credentials are needed.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: insurance
+      POSTGRES_PASSWORD: insurance
+      POSTGRES_DB: insurance
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U insurance"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: .
+    command: python -m app.main
+    environment: &app_env
+      DATABASE_URL: postgresql+psycopg://insurance:insurance@db:5432/insurance
+      APP_ENVIRONMENT: mock
+      ADAPTER_MODE: a2a
+      A2A_URL_NORTHWIND: http://insurer-a:9001
+      A2A_URL_HARBORLINE: http://insurer-b:9002
+      A2A_URL_CEDAR: http://insurer-c:9003
+      FIXTURE_CLOCK: "true"
+      FIXTURE_CLOCK_START: "2026-10-01T09:00:00+00:00"
+      EMBEDDED_WORKER: "false"
+      HOST: 0.0.0.0
+      PORT: "8000"
+      LLM_PROVIDER: ${LLM_PROVIDER:-scripted}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+    ports: ["8000:8000"]
+    depends_on:
+      db: {condition: service_healthy}
+      insurer-a: {condition: service_started}
+      insurer-b: {condition: service_started}
+      insurer-c: {condition: service_started}
+
+  worker:
+    build: .
+    command: python -m app.workflows.worker
+    environment: *app_env
+    depends_on:
+      db: {condition: service_healthy}
+
+  insurer-a:
+    build: .
+    command: python scripts/run_insurer.py --insurer a --port 9001 --realtime-latency
+    environment: {FIXTURE_CLOCK: "true", FIXTURE_CLOCK_START: "2026-10-01T09:00:00+00:00"}
+    ports: ["9001:9001"]
+
+  insurer-b:
+    build: .
+    command: python scripts/run_insurer.py --insurer b --port 9002 --realtime-latency
+    environment: {FIXTURE_CLOCK: "true", FIXTURE_CLOCK_START: "2026-10-01T09:00:00+00:00"}
+    ports: ["9002:9002"]
+
+  insurer-c:
+    build: .
+    command: python scripts/run_insurer.py --insurer c --port 9003 --realtime-latency
+    environment: {FIXTURE_CLOCK: "true", FIXTURE_CLOCK_START: "2026-10-01T09:00:00+00:00"}
+    ports: ["9003:9003"]
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    environment:
+      VITE_PROXY_TARGET: http://api:8000
+    volumes:
+      - ./frontend:/app
+    ports: ["5173:5173"]
+    depends_on: [api]
+
+volumes:
+  pgdata: {}

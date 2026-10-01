@@ -1,0 +1,133 @@
+[
+  {
+    "provider": "swift",
+    "scenario": "normal",
+    "status": "reconciled",
+    "receipt": {
+      "actual_fee_minor": 500,
+      "actual_recipient_minor": 4118400,
+      "actual_source_debit_minor": 50000,
+      "currency": "INR",
+      "delivered_at": "2026-09-26T16:00:00+00:00",
+      "differences": {
+        "fee_minor": 0,
+        "recipient_minor": 0,
+        "source_debit_minor": 0
+      },
+      "environment": "mock",
+      "evidence_id": "evt_b2d4d3335584470b",
+      "id": "receipt_b89eeb1ac1db40d5",
+      "provider_reference": "utr_mock_a823edfa3ac24fad",
+      "quoted_recipient_minor": 4118400,
+      "reconciliation_status": "matched",
+      "source_currency": "USD",
+      "transfer_id": "transfer_3430ce31f6bb437b"
+    },
+    "provider_transfer_count": 1,
+    "event_types": [
+      "case.created",
+      "quotes.requested",
+      "quotes.received",
+      "initiate.prepared",
+      "action.approved",
+      "provider.accepted",
+      "remittance.processing",
+      "remittance.payout_pending",
+      "remittance.delivered",
+      "delivery.reconciled"
+    ],
+    "concierge_response": "Lotus Remit is recommended. Best recipient amount within your estimated deadline. Fees and known recipient deductions are already included; the exchange rate includes the FX spread.",
+    "tool_calls": 1,
+    "mode": "rules-only",
+    "model_cost_usd": 0
+  },
+  {
+    "provider": "bridge",
+    "scenario": "missing_document",
+    "status": "reconciled",
+    "receipt": {
+      "actual_fee_minor": 299,
+      "actual_recipient_minor": 4157489,
+      "actual_source_debit_minor": 50000,
+      "currency": "INR",
+      "delivered_at": "2026-09-27T00:00:00+00:00",
+      "differences": {
+        "fee_minor": 0,
+        "recipient_minor": 0,
+        "source_debit_minor": 0
+      },
+      "environment": "mock",
+      "evidence_id": "evt_63fb90cd60ad4643",
+      "id": "receipt_885edf2345c042b4",
+      "provider_reference": "utr_mock_f7ec892876dc4214",
+      "quoted_recipient_minor": 4157489,
+      "reconciliation_status": "matched",
+      "source_currency": "USD",
+      "transfer_id": "transfer_89abd88b3be94bc2"
+    },
+    "provider_transfer_count": 1,
+    "event_types": [
+      "case.created",
+      "quotes.requested",
+      "quotes.received",
+      "initiate.prepared",
+      "action.approved",
+      "provider.accepted",
+      "remittance.processing",
+      "remittance.information_required",
+      "share_documents.prepared",
+      "action.approved",
+      "documents.shared",
+      "remittance.payout_pending",
+      "remittance.delivered",
+      "delivery.reconciled"
+    ],
+    "concierge_response": "Lotus Remit is recommended. Best recipient amount within your estimated deadline. Fees and known recipient deductions are already included; the exchange rate includes the FX spread.",
+    "tool_calls": 1,
+    "mode": "rules-only",
+    "model_cost_usd": 0
+  },
+  {
+    "provider": "lotus",
+    "scenario": "timeout",
+    "status": "reconciled",
+    "receipt": {
+      "actual_fee_minor": 199,
+      "actual_recipient_minor": 4160814,
+      "actual_source_debit_minor": 50000,
+      "currency": "INR",
+      "delivered_at": "2026-09-27T12:00:00+00:00",
+      "differences": {
+        "fee_minor": 0,
+        "recipient_minor": 0,
+        "source_debit_minor": 0
+      },
+      "environment": "mock",
+      "evidence_id": "evt_c0d805aad8104477",
+      "id": "receipt_a3d729ca21654188",
+      "provider_reference": "utr_mock_2fa71bcc7b8e44a1",
+      "quoted_recipient_minor": 4160814,
+      "reconciliation_status": "matched",
+      "source_currency": "USD",
+      "transfer_id": "transfer_bd329a21bfa04cd6"
+    },
+    "provider_transfer_count": 1,
+    "event_types": [
+      "case.created",
+      "quotes.requested",
+      "quotes.received",
+      "initiate.prepared",
+      "action.approved",
+      "provider.timeout",
+      "provider.recovered",
+      "remittance.processing",
+      "remittance.payout_pending",
+      "remittance.delivered",
+      "delivery.reconciled"
+    ],
+    "concierge_response": "Lotus Remit is recommended. Best recipient amount within your estimated deadline. Fees and known recipient deductions are already included; the exchange rate includes the FX spread.",
+    "tool_calls": 1,
+    "mode": "rules-only",
+    "model_cost_usd": 0
+  }
+]

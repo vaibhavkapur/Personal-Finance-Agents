@@ -1,0 +1,282 @@
+{
+  "fixture_version": "1.0",
+  "mode": "rules-only baseline",
+  "model_comparison": "No external language model configured; no comparative model performance is claimed.",
+  "cases": 30,
+  "passed": 30,
+  "development_cases": 20,
+  "held_out_cases": 10,
+  "model_cost_usd": 0,
+  "results": [
+    {
+      "id": "eval_01",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_02",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_03",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_04",
+      "split": "development",
+      "passed": true,
+      "actual_state": "manual_review",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_05",
+      "split": "development",
+      "passed": true,
+      "actual_state": "manual_review",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_06",
+      "split": "development",
+      "passed": true,
+      "actual_state": "rejected",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_07",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_08",
+      "split": "development",
+      "passed": true,
+      "actual_state": "awaiting_approval",
+      "provider_writes": 0,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_09",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_10",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_11",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_12",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_13",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_14",
+      "split": "development",
+      "passed": true,
+      "actual_state": "manual_review",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_15",
+      "split": "development",
+      "passed": true,
+      "actual_state": "manual_review",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_16",
+      "split": "development",
+      "passed": true,
+      "actual_state": "rejected",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_17",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_18",
+      "split": "development",
+      "passed": true,
+      "actual_state": "awaiting_approval",
+      "provider_writes": 0,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_19",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_20",
+      "split": "development",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_21",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_22",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_23",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_24",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "manual_review",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_25",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "manual_review",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_26",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "rejected",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_27",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_28",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "awaiting_approval",
+      "provider_writes": 0,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_29",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    },
+    {
+      "id": "eval_30",
+      "split": "held_out",
+      "passed": true,
+      "actual_state": "reconciled",
+      "provider_writes": 1,
+      "verified_completion": true,
+      "tool_calls": 1
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "policy_id": "travel_policy_demo_1",
+  "fixture": true,
+  "insurer_name": "Demo Mutual Travel Assurance (fixture insurer)",
+  "policyholder_customer_id": "cus_demo_3",
+  "product": "Single Trip Travel Protection (synthetic)",
+  "notes": "Sample contract terms authored for this prototype. Not an industry-wide rule set and not a real insurer.",
+  "versions": [
+    {
+      "version": "2026-01",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-08-31",
+      "source_text": "SECTION 7 - BAGGAGE DELAY. 7.1 We reimburse reasonable essential purchases of clothing and toiletries if your checked baggage is delayed by the common carrier for more than 24 hours after your arrival at a destination other than your home. 7.2 The maximum benefit for all purchases under this section is $100 per insured per trip. 7.3 Purchases must be made after the delay begins and before your baggage is returned to you. 7.4 We do not pay for electronics, jewelry, alcohol, luxury goods or items not essential to the trip. 7.5 You must obtain a written baggage delay report from the carrier and itemized receipts. 7.6 Claims must be filed within 90 days of the loss. 7.7 You may request a written review of a claim decision within 60 days of the decision date by writing to the Claims Review Unit.",
+      "clauses": [
+        {
+          "id": "C7.1",
+          "heading": "Covered delay",
+          "start": 27,
+          "end": 239
+        },
+        {
+          "id": "C7.2",
+          "heading": "Maximum benefit",
+          "start": 240,
+          "end": 330
+        },
+        {
+          "id": "C7.3",
+          "heading": "Purchase window",
+          "start": 331,
+          "end": 424
+        },
+        {
+          "id": "C7.4",
+          "heading": "Exclusions",
+          "start": 425,
+          "end": 526
+        },
+        {
+          "id": "C7.5",
+          "heading": "Required evidence",
+          "start": 527,
+          "end": 617
+        },
+        {
+          "id": "C7.6",
+          "heading": "Filing deadline",
+          "start": 618,
+          "end": 670
+        },
+        {
+          "id": "C7.7",
+          "heading": "Review of decisions",
+          "start": 671,
+          "end": 801
+        }
+      ],
+      "rules": {
+        "approved_by": "reviewer_demo",
+        "approved_at": "2026-01-05T10:00:00Z",
+        "currency": "USD",
+        "delay_threshold_hours": {
+          "rule_id": "R_DELAY_THRESHOLD",
+          "clause_id": "C7.1",
+          "value": 24
+        },
+        "excludes_home_arrival": {
+          "rule_id": "R_NOT_HOME",
+          "clause_id": "C7.1",
+          "value": true
+        },
+        "aggregate_cap_minor": {
+          "rule_id": "R_AGGREGATE_CAP",
+          "clause_id": "C7.2",
+          "value": 10000
+        },
+        "purchase_window": {
+          "rule_id": "R_PURCHASE_WINDOW",
+          "clause_id": "C7.3",
+          "value": "delay_start_to_baggage_return"
+        },
+        "covered_categories": {
+          "rule_id": "R_COVERED_CATEGORY",
+          "clause_id": "C7.1",
+          "value": [
+            "clothing",
+            "toiletries",
+            "essentials"
+          ]
+        },
+        "excluded_categories": {
+          "rule_id": "R_EXCLUDED_CATEGORY",
+          "clause_id": "C7.4",
+          "value": [
+            "electronics",
+            "jewelry",
+            "alcohol",
+            "luxury"
+          ]
+        },
+        "required_evidence": {
+          "rule_id": "R_REQUIRED_EVIDENCE",
+          "clause_id": "C7.5",
+          "value": [
+            "baggage_delay_report",
+            "receipt"
+          ]
+        },
+        "alternative_evidence": {
+          "rule_id": "R_ALT_EVIDENCE",
+          "clause_id": "C7.5",
+          "value": {
+            "receipt": [
+              "card_statement"
+            ]
+          }
+        },
+        "filing_deadline_days": {
+          "rule_id": "R_FILING_DEADLINE",
+          "clause_id": "C7.6",
+          "value": 90
+        },
+        "appeal": {
+          "rule_id": "R_APPEAL_PROCESS",
+          "clause_id": "C7.7",
+          "value": {
+            "process": "written review request to the Claims Review Unit",
+            "deadline_days_after_decision": 60,
+            "channel": "supplemental_submission"
+          }
+        }
+      }
+    },
+    {
+      "version": "2026-09",
+      "effective_from": "2026-09-01",
+      "effective_to": null,
+      "source_text": "SECTION 7 - BAGGAGE DELAY. 7.1 We reimburse reasonable essential purchases of clothing, toiletries and similar essentials if your checked baggage is delayed by the common carrier for more than 12 hours after your arrival at a destination other than your home. 7.2 The maximum benefit for all purchases under this section is $120 per insured per trip. 7.3 Purchases must be made after the delay begins and before your baggage is returned to you. 7.4 We do not pay for electronics, jewelry, alcohol, luxury goods or items not essential to the trip. 7.5 You must obtain a written baggage delay report from the carrier and itemized receipts; where a receipt is unavailable, a card statement line showing merchant, date and amount may be accepted. 7.6 Claims must be filed within 90 days of the loss. 7.7 You may request a written review of a claim decision within 60 days of the decision date by writing to the Claims Review Unit.",
+      "clauses": [
+        {
+          "id": "C7.1",
+          "heading": "Covered delay",
+          "start": 27,
+          "end": 259
+        },
+        {
+          "id": "C7.2",
+          "heading": "Maximum benefit",
+          "start": 260,
+          "end": 350
+        },
+        {
+          "id": "C7.3",
+          "heading": "Purchase window",
+          "start": 351,
+          "end": 444
+        },
+        {
+          "id": "C7.4",
+          "heading": "Exclusions",
+          "start": 445,
+          "end": 546
+        },
+        {
+          "id": "C7.5",
+          "heading": "Required evidence",
+          "start": 547,
+          "end": 742
+        },
+        {
+          "id": "C7.6",
+          "heading": "Filing deadline",
+          "start": 743,
+          "end": 795
+        },
+        {
+          "id": "C7.7",
+          "heading": "Review of decisions",
+          "start": 796,
+          "end": 926
+        }
+      ],
+      "rules": {
+        "approved_by": "reviewer_demo",
+        "approved_at": "2026-08-20T10:00:00Z",
+        "currency": "USD",
+        "delay_threshold_hours": {
+          "rule_id": "R_DELAY_THRESHOLD",
+          "clause_id": "C7.1",
+          "value": 12
+        },
+        "excludes_home_arrival": {
+          "rule_id": "R_NOT_HOME",
+          "clause_id": "C7.1",
+          "value": true
+        },
+        "aggregate_cap_minor": {
+          "rule_id": "R_AGGREGATE_CAP",
+          "clause_id": "C7.2",
+          "value": 12000
+        },
+        "purchase_window": {
+          "rule_id": "R_PURCHASE_WINDOW",
+          "clause_id": "C7.3",
+          "value": "delay_start_to_baggage_return"
+        },
+        "covered_categories": {
+          "rule_id": "R_COVERED_CATEGORY",
+          "clause_id": "C7.1",
+          "value": [
+            "clothing",
+            "toiletries",
+            "essentials"
+          ]
+        },
+        "excluded_categories": {
+          "rule_id": "R_EXCLUDED_CATEGORY",
+          "clause_id": "C7.4",
+          "value": [
+            "electronics",
+            "jewelry",
+            "alcohol",
+            "luxury"
+          ]
+        },
+        "required_evidence": {
+          "rule_id": "R_REQUIRED_EVIDENCE",
+          "clause_id": "C7.5",
+          "value": [
+            "baggage_delay_report",
+            "receipt"
+          ]
+        },
+        "alternative_evidence": {
+          "rule_id": "R_ALT_EVIDENCE",
+          "clause_id": "C7.5",
+          "value": {
+            "receipt": [
+              "card_statement"
+            ]
+          }
+        },
+        "filing_deadline_days": {
+          "rule_id": "R_FILING_DEADLINE",
+          "clause_id": "C7.6",
+          "value": 90
+        },
+        "appeal": {
+          "rule_id": "R_APPEAL_PROCESS",
+          "clause_id": "C7.7",
+          "value": {
+            "process": "written review request to the Claims Review Unit",
+            "deadline_days_after_decision": 60,
+            "channel": "supplemental_submission"
+          }
+        }
+      }
+    }
+  ]
+}

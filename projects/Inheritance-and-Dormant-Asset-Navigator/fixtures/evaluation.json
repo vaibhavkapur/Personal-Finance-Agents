@@ -1,0 +1,229 @@
+{
+  "version": "estate-fixtures-v1",
+  "cases": [
+    {
+      "id": "harbor-normal",
+      "institution": "harbor",
+      "scenario": "normal",
+      "expected": "evidence_requested",
+      "split": "development"
+    },
+    {
+      "id": "harbor-timeout_after_acceptance",
+      "institution": "harbor",
+      "scenario": "timeout_after_acceptance",
+      "expected": "evidence_requested",
+      "split": "development"
+    },
+    {
+      "id": "harbor-delayed",
+      "institution": "harbor",
+      "scenario": "delayed",
+      "expected": "evidence_requested",
+      "split": "development"
+    },
+    {
+      "id": "harbor-declined",
+      "institution": "harbor",
+      "scenario": "declined",
+      "expected": "claim_denied",
+      "split": "development"
+    },
+    {
+      "id": "harbor-no_match",
+      "institution": "harbor",
+      "scenario": "no_match",
+      "expected": "no_asset_found",
+      "split": "development"
+    },
+    {
+      "id": "harbor-malformed",
+      "institution": "harbor",
+      "scenario": "malformed",
+      "expected": "manual_review",
+      "split": "development"
+    },
+    {
+      "id": "harbor-wrong_destination",
+      "institution": "harbor",
+      "scenario": "wrong_destination",
+      "expected": "evidence_requested",
+      "split": "development"
+    },
+    {
+      "id": "cedar-normal",
+      "institution": "cedar",
+      "scenario": "normal",
+      "expected": "human_review",
+      "split": "development"
+    },
+    {
+      "id": "cedar-timeout_after_acceptance",
+      "institution": "cedar",
+      "scenario": "timeout_after_acceptance",
+      "expected": "human_review",
+      "split": "development"
+    },
+    {
+      "id": "cedar-delayed",
+      "institution": "cedar",
+      "scenario": "delayed",
+      "expected": "human_review",
+      "split": "development"
+    },
+    {
+      "id": "cedar-declined",
+      "institution": "cedar",
+      "scenario": "declined",
+      "expected": "claim_denied",
+      "split": "development"
+    },
+    {
+      "id": "cedar-no_match",
+      "institution": "cedar",
+      "scenario": "no_match",
+      "expected": "no_asset_found",
+      "split": "development"
+    },
+    {
+      "id": "cedar-malformed",
+      "institution": "cedar",
+      "scenario": "malformed",
+      "expected": "manual_review",
+      "split": "development"
+    },
+    {
+      "id": "cedar-wrong_destination",
+      "institution": "cedar",
+      "scenario": "wrong_destination",
+      "expected": "human_review",
+      "split": "development"
+    },
+    {
+      "id": "summit-normal",
+      "institution": "summit",
+      "scenario": "normal",
+      "expected": "resolved",
+      "split": "development"
+    },
+    {
+      "id": "summit-timeout_after_acceptance",
+      "institution": "summit",
+      "scenario": "timeout_after_acceptance",
+      "expected": "resolved",
+      "split": "development"
+    },
+    {
+      "id": "summit-delayed",
+      "institution": "summit",
+      "scenario": "delayed",
+      "expected": "resolved",
+      "split": "development"
+    },
+    {
+      "id": "summit-declined",
+      "institution": "summit",
+      "scenario": "declined",
+      "expected": "claim_denied",
+      "split": "development"
+    },
+    {
+      "id": "summit-no_match",
+      "institution": "summit",
+      "scenario": "no_match",
+      "expected": "no_asset_found",
+      "split": "development"
+    },
+    {
+      "id": "summit-malformed",
+      "institution": "summit",
+      "scenario": "malformed",
+      "expected": "manual_review",
+      "split": "development"
+    },
+    {
+      "id": "summit-wrong_destination",
+      "institution": "summit",
+      "scenario": "wrong_destination",
+      "expected": "manual_review",
+      "split": "development"
+    },
+    {
+      "id": "harbor-authority-missing",
+      "institution": "harbor",
+      "authority": "missing",
+      "expected": "blocked",
+      "split": "held_out"
+    },
+    {
+      "id": "harbor-authority-expired",
+      "institution": "harbor",
+      "authority": "expired",
+      "expected": "blocked",
+      "split": "held_out"
+    },
+    {
+      "id": "cedar-authority-missing",
+      "institution": "cedar",
+      "authority": "missing",
+      "expected": "blocked",
+      "split": "held_out"
+    },
+    {
+      "id": "cedar-authority-expired",
+      "institution": "cedar",
+      "authority": "expired",
+      "expected": "blocked",
+      "split": "held_out"
+    },
+    {
+      "id": "summit-authority-missing",
+      "institution": "summit",
+      "authority": "missing",
+      "expected": "blocked",
+      "split": "held_out"
+    },
+    {
+      "id": "summit-authority-expired",
+      "institution": "summit",
+      "authority": "expired",
+      "expected": "blocked",
+      "split": "held_out"
+    },
+    {
+      "id": "summit-missing-form",
+      "institution": "summit",
+      "form": false,
+      "expected": "blocked",
+      "split": "development"
+    },
+    {
+      "id": "harbor-follow-up-complete",
+      "institution": "harbor",
+      "follow_up": true,
+      "expected": "resolved",
+      "split": "development"
+    },
+    {
+      "id": "harbor-authority-contested",
+      "institution": "harbor",
+      "authority": "contested",
+      "expected": "blocked",
+      "split": "development"
+    },
+    {
+      "id": "harbor-ambiguous-owner",
+      "institution": "harbor",
+      "ambiguous": true,
+      "expected": "blocked",
+      "split": "held_out"
+    },
+    {
+      "id": "summit-requirements-revised",
+      "institution": "summit",
+      "changed_requirements": true,
+      "expected": "blocked",
+      "split": "held_out"
+    }
+  ]
+}
